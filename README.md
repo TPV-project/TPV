@@ -23,4 +23,4 @@
 - Rafa: rafaelserranocardenas@gmail.com
 - Galiana: delgaliana@gmail.com
 - Pol: polguinartarranz@gmail.com
-- Mikelet: mikelet.de.la.seu@gmail.com
+- Mikel: mikelet.de.la.seu@gmail.com
