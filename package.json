@@ -1,0 +1,29 @@
+{
+  "name": "TPV",
+  "version": "1.0.0",
+  "description": "# Links de interés:",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TPV-project/Testing.git"
+  },
+  "keywords": [],
+  "author": "Myteck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TPV-project/Testing/issues"
+  },
+  "homepage": "https://github.com/TPV-project/Testing#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
