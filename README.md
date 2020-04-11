@@ -1,19 +1,24 @@
 # Business Managment Software 
 
-# Links de interés:
+## Uso
+  **production mode:** `npm start`
+  
+  **developer mode:** `npm run dev`
+
+## Links de interés:
 
 * [Trello](https://trello.com/b/Lx8kV8KY/projecete)
 * [Github Repo](https://github.com/TPV-project/Testing)
 * [Drive](https://docs.google.com/document/d/119aLGj1Hcy_72VsnyHyNnWDk5vMxjrskqCmLXzt-SVg)
 
-# Lista de canales de texto:
+## Lista de canales de texto:
 
 * #global  (Chat global del proyecto)
 * #ideas (Encuentra inspiración y postea links de interés)
 * #frontend (Chat de trabajo para el Front-End del proyecto)
 * #backend (Chat de trabajo para el Back-End del proyecto)
 
-# Mails:
+## Mails:
 - Aitor: reformedot@gmail.com
 - Rafa: rafaelserranocardenas@gmail.com
 - Galiana: delgaliana@gmail.com
