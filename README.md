@@ -1,9 +1,9 @@
 # Business Managment Software 
 
 ## Uso
-  **production mode:** `npm start`
+  **Production mode:** `npm start`
   
-  **developer mode:** `npm run dev`
+  **Developer mode:** `npm run dev`
 
 ## Links de interés:
 
