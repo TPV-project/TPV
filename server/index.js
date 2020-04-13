@@ -15,10 +15,10 @@ app.set('port', process.env.PORT || 3000) //toma el puerto dado por el servicio 
 app.use(morgan('dev')); //el modulo morgan permite ver en consola las peticiones al servidor
 app.use(express.json()); //el modulo json verifica y permite enviar y recibir datos en formato json
 
-// Routes 
+// Routes
 app.use('/home' ,require('./routes/routes'));
 app.use('/api/products' ,require('./routes/products.routes'));
-
+app.use('/api/tickets' ,require('./routes/tickets.routes'));
 
 // Static files
 app.use(express.static(path.join(path.dirname(__dirname), 'client/public'))); //lugar donde se encuentra index.html (base de todo)

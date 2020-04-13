@@ -17,15 +17,15 @@ router.get('/:id', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-    const { nombre, precio, cocina } =  req.body; //del body guarda los parametros indicados
-    const producto = new Producto({ nombre, precio, cocina}); //crea un nuevo producto con esos parametros
+    const { nombre, precio_llevar, precio_barra, cocina } =  req.body; //del body guarda los parametros indicados
+    const producto = new Producto({ nombre, precio_llevar, precio_barra, cocina}); //crea un nuevo producto con esos parametros
     await producto.save(); //almacena el producto en la base de datos
     res.json({status: 'Producto creado'}); //respuesta de producto creado
 });
 
 router.put('/:id', async (req, res) => {
-    const { nombre, precio, cocina } = req.body;
-    const nuevoproducto = { nombre, precio, cocina };
+    const { nombre, precio_llevar, precio_barra, cocina } = req.body;
+    const nuevoproducto = { nombre, precio_llevar, precio_barra, cocina };
     await Producto.findByIdAndUpdate(req.params.id, nuevoproducto); //busca por id y actualiza
     res.json({status: 'Producto actualizado'}); //respuesta de producto actualizado
 });

@@ -3,7 +3,8 @@ const { Schema } = mongoose;
 
 const ProductoSchema =  new Schema({
     nombre : {type: String, required: true},
-    precio: {type: Number, required: true},
+    precio_llevar: {type: Number, required: true},
+    precio_barra: {type: Number, required: true},
     cocina: {type: Boolean, required: true}
 });
 
