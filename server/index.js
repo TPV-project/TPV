@@ -18,11 +18,8 @@ app.use(express.json()); //el modulo json verifica y permite enviar y recibir da
 // Routes
 app.use('/home' ,require('./routes/routes'));
 app.use('/api/products' ,require('./routes/products.routes'));
-<<<<<<< Updated upstream
 app.use('/api/tickets' ,require('./routes/tickets.routes'));
-=======
 app.use('/api/caja' ,require('./routes/caja.routes'));
->>>>>>> Stashed changes
 
 // Static files
 app.use(express.static(path.join(path.dirname(__dirname), 'client/public'))); //lugar donde se encuentra index.html (base de todo)
@@ -31,5 +28,4 @@ app.use(express.static(path.join(path.dirname(__dirname), 'client/public'))); //
 
 app.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`);
-
 });
