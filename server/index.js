@@ -10,7 +10,6 @@ const app = express();
 // Settings
 app.set('port', process.env.PORT || 3000) //toma el puerto dado por el servicio en la nube o en local el 3000
 
-
 // Middlewares (se ejecutan antes de las rutas)
 app.use(morgan('dev')); //el modulo morgan permite ver en consola las peticiones al servidor
 app.use(express.json()); //el modulo json verifica y permite enviar y recibir datos en formato json
@@ -18,11 +17,8 @@ app.use(express.json()); //el modulo json verifica y permite enviar y recibir da
 // Routes
 app.use('/home' ,require('./routes/routes'));
 app.use('/api/products' ,require('./routes/products.routes'));
-<<<<<<< Updated upstream
 app.use('/api/tickets' ,require('./routes/tickets.routes'));
-=======
-app.use('/api/caja' ,require('./routes/caja.routes'));
->>>>>>> Stashed changes
+app.use('/api/caja' ,require('./routes/tickets.routes'));
 
 // Static files
 app.use(express.static(path.join(path.dirname(__dirname), 'client/public'))); //lugar donde se encuentra index.html (base de todo)
@@ -31,5 +27,4 @@ app.use(express.static(path.join(path.dirname(__dirname), 'client/public'))); //
 
 app.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`);
-
 });
