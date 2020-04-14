@@ -4,7 +4,6 @@ const router = express.Router();
 
 const Producto = require('../models/producto'); //obtiene el modelo desde su ubicacion
 
-
 router.get('/', async (req, res) => {
     const productos = await Producto.find(); //carga todos los productos
     res.json(productos); //los envia como respuesta
@@ -14,7 +13,6 @@ router.get('/:id', async (req, res) => {
     const producto = await Producto.findById(req.params.id);
     res.json(producto);
 });
-
 
 router.post('/', async (req, res) => {
     const { nombre, precio_llevar, precio_barra, cocina } =  req.body; //del body guarda los parametros indicados
