@@ -2,6 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
 const { mongoose } = require('./database');
 
@@ -13,6 +14,7 @@ app.set('port', process.env.PORT || 3000) //toma el puerto dado por el servicio 
 // Middlewares (se ejecutan antes de las rutas)
 app.use(morgan('dev')); //el modulo morgan permite ver en consola las peticiones al servidor
 app.use(express.json()); //el modulo json verifica y permite enviar y recibir datos en formato json
+app.use(cors()); //el modulo cors permite usar el CORS
 
 // Routes
 app.use('/home' ,require('./routes/routes'));
