@@ -19,6 +19,8 @@ app.use('/home' ,require('./routes/routes'));
 app.use('/api/products' ,require('./routes/products.routes'));
 app.use('/api/tickets' ,require('./routes/tickets.routes'));
 app.use('/api/caja' ,require('./routes/caja.routes'));
+app.use('/api/usuario' ,require('./routes/usuario.routes'));
+app.use('/api/rol' ,require('./routes/rol.routes'));
 
 // Static files
 app.use(express.static(path.join(path.dirname(__dirname), 'client/public'))); //lugar donde se encuentra index.html (base de todo)
