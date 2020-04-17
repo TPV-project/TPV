@@ -17,15 +17,15 @@ router.get('/:id', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-    const { nombre, apellidos, password, activo, rol } =  req.body; //del body guarda los parametros indicados
-    const usuario = new Usuario({ nombre, apellidos, password, activo, rol }); //crea un nuevo producto con esos parametros
+    const { nombre, apellidos, username, password, activo, rol } =  req.body; //del body guarda los parametros indicados
+    const usuario = new Usuario({ nombre, apellidos, username, password, activo, rol }); //crea un nuevo producto con esos parametros
     await usuario.save(); //almacena el producto en la base de datos
     res.json({status: 'Usuario creado'}); //respuesta de producto creado
 });
 
 router.put('/:id', async (req, res) => {
-    const { nombre, apellidos, password, activo, rol } = req.body;
-    const nuevoUsuario = { nombre, apellidos, password, activo, rol };
+    const { nombre, apellidos, username, password, activo, rol } = req.body;
+    const nuevoUsuario = { nombre, apellidos, username, password, activo, rol };
     await Usuario.findByIdAndUpdate(req.params.id, nuevoUsuario); //busca por id y actualiza
     res.json({status: 'Usuario actualizado'}); //respuesta de producto actualizado
 });
