@@ -4,6 +4,13 @@ const router = express.Router();
 
 const Producto = require('../models/producto'); //obtiene el modelo desde su ubicacion
 
+
+
+router.route('/').get((req, res)=> {
+    Producto.find()
+    .then(productos => res.json(productos))
+    .catch(err=> res.status(400).json ('Error: '+err));
+});
 router.get('/', async (req, res) => {
     const productos = await Producto.find(); //carga todos los productos
     res.json(productos); //los envia como respuesta
