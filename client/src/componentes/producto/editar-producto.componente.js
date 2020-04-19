@@ -20,24 +20,19 @@ export default class EditarProducto extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/products'+this.props.match.params.id)
+        axios.get('http://localhost:3000/api/products/'+this.props.match.params.id)
             .then(response => {
-                this.setState({
+              this.setState({
                 nombre: response.data.nombre,
                 precio_llevar: response.data.precio_llevar,
                 precio_barra: response.data.precio_barra,
                 cocina: response.data.cocina
-            })
+              })
             })
             .catch((error) => {
                 console.log(error);
             })
-
-        
     }
-
-
-
 
     onChangeNombre(e) {
         this.setState({
@@ -67,14 +62,13 @@ export default class EditarProducto extends Component {
         e.preventDefault();
 
         const producto = {
-            nombre: this.state.nombre,
-            precio_llevar: this.state.precio_llevar,
-            precio_barra: this.state.precio_barra,
-            cocina: this.state.cocina
+          nombre: this.state.nombre,
+          precio_llevar: this.state.precio_llevar,
+          precio_barra: this.state.precio_barra,
+          cocina: this.state.cocina
         }
 
-        /*console.log(producto);*/
-        axios.post('http://localhost:3000/api/products'+this.props.match.params.id, producto)
+        axios.put('http://localhost:3000/api/products/'+this.props.match.params.id, producto)
             .then(res => console.log(res.data));
 
     }

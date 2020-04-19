@@ -10,9 +10,9 @@ const ProductosLista = props => (
         <td>{props.productos.precio_llevar}</td>
         <td>{props.productos.precio_barra}</td>
         <td>{props.productos.cocina}</td>
-        <td><Link to={"/editar/"+props.productos._id}>editar</Link> | <a href="#" onClick={()=> {props.deleteProduct(props.productos._id)}}>borrar</a></td>
+        <td><Link to={"/editar/producto/"+props.productos._id}>editar</Link> | <a href="#" onClick={()=> {props.deleteProduct(props.productos._id)}}>borrar</a></td>
     </tr>
-    
+
 )
 
 export default class ListarProducto extends Component {
@@ -25,7 +25,7 @@ export default class ListarProducto extends Component {
     }
 
     componentDidMount() {
-      
+
 
         axios.get('http://localhost:3000/api/products')
             .then(response => {
@@ -33,7 +33,7 @@ export default class ListarProducto extends Component {
             })
             .catch((error) => {
                 console.log(error);
-            })       
+            })
     }
 
 
@@ -58,7 +58,7 @@ export default class ListarProducto extends Component {
         return (
             <div>
                 <h1>ListarProducto</h1>
-                <a href="http://localhost:3001/crear" type="button" className="btn btn-primary">Create</a>
+                <a href="http://localhost:3001/crear/producto" type="button" className="btn btn-primary">Create</a>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>

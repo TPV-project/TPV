@@ -15,7 +15,6 @@ router.get('/:id', async (req, res) => {
     res.json(usuario);
 });
 
-
 router.post('/', async (req, res) => {
     const { nombre, apellidos, username, password, activo, rol } =  req.body; //del body guarda los parametros indicados
     const usuario = new Usuario({ nombre, apellidos, username, password, activo, rol }); //crea un nuevo producto con esos parametros
@@ -30,6 +29,10 @@ router.put('/:id', async (req, res) => {
     res.json({status: 'Usuario actualizado'}); //respuesta de producto actualizado
 });
 
+router.delete('/:id', async (req, res) => {
+    await Usuario.findByIdAndDelete(req.params.id); //busca por id y elimina
+    res.json({status: 'Usuario eliminado'}); //respuesta de producto eliminado
+});
 
 
 module.exports = router;
