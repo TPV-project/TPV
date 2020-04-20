@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../../App.css';
+import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 export default class EditarUsuario extends Component {
     constructor(props) {

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Error } from 'mongoose';
 import { BsPencil, BsTrash } from 'react-icons/bs';
+import '../../App.css';
+import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const UsuariosLista = props => (
   <tr>
@@ -50,33 +52,24 @@ export default class ListUser extends Component {
 
   render() {
     return (
-    <div className="container">
-      <div className="jumbotron jumbotron-fluid border-bottom border-info">
-        <div className="container">
-          <h1 className="display-4">Usuarios</h1>
-          <p className="lead">Crea, modifica o elimina usuarios</p>
-        </div>
-      </div>
-      <a href="http://localhost:3001/crear/usuario" type="button" className="btn btn-danger btn-lg btn-block">Añadir usuario</a>
-      <br/>
-      <br/>
       <div>
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Nombre de usuario</th>
-              <th scope="col">Rol</th>
-              <th scope="col">Activo</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.userList()}
-          </tbody>
-        </table>
+          <h1 className="mt-3">Lista de usuarios</h1>
+          <table className="table mt-3">
+            <thead className="thead-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Nombre de usuario</th>
+                <th>Rol</th>
+                <th>Activo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.userList()}
+            </tbody>
+          </table>
+        <a href="http://localhost:3001/crear/usuario" type="button" className="btn btn-danger mt-2">Añadir usuario</a>
       </div>
-    </div>
     )
   }
 }

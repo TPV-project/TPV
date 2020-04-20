@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 //Productos
 import EditarProducto from "./componentes/producto/editar-producto.componente";
@@ -16,7 +17,7 @@ import EditarUsuario from "./componentes/usuario/editar-usuario.componente";
 function App() {
   return (
     <Router>
-      <nav className="navbar navbar-dark bg-dark">
+      <nav className="navbar bg-dark">
         <a className="nav-link" href="http://localhost:3001/">Inicio</a>
         <a className="nav-link" href="http://localhost:3001/producto">Productos</a>
         <a className="nav-link" href="#">Caja</a>
