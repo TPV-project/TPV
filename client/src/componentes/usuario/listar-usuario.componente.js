@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-//import { Error } from 'mongoose';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import '../../App.css';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -74,6 +73,7 @@ export default class ListUser extends Component {
                 <th>Nombre de usuario</th>
                 <th>Rol</th>
                 <th>Activo</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>

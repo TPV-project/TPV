@@ -109,12 +109,8 @@ export default class EditarUsuario extends Component {
     render(){
         return(
             <div>
-            <div className="jumbotron jumbotron-fluid border-bottom border-info">
-              <div className="container">
-                <h1 className="display-4 text-center">Editar usuario</h1>
-              </div>
-            </div>
-                <form onSubmit={this.onSubmit}>
+                <h1 className="mt-3">Editar usuario</h1>
+                <form onSubmit={this.onSubmit} className="mt-3">
                     <div className="form-group">
                         <label>Nombre: </label>
                         <input
@@ -176,17 +172,15 @@ export default class EditarUsuario extends Component {
                         <label>Activo: </label>
                         <input
                         type="checkbox"
-                        className="custom-control custom-checkbox"
+                        className="ml-2"
                         id="activo"
                         value={this.state.activo}
                         onChange={this.onChangeActivo}
                         />
                     </div>
-                    <div className="form-group float-right">
-                        <input type="submit" value="Guardar" className="btn btn-primary"/>
-                    </div>
-                    <div className="form-group float-left">
-                        <a href="http://localhost:3001/usuario" type="button" className="btn btn-danger">Cancelar</a>
+                    <div className="form-group">
+                        <input type="submit" value="Modificar" className="btn btn-info"/>
+                        <a href="http://localhost:3001/usuario" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
             </div>

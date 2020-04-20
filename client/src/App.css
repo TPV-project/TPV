@@ -42,15 +42,20 @@
 }
 
 textarea:hover, 
-input:hover, 
+input[type="text"]:hover, 
+input[type="password"]:hover, 
 textarea:active, 
-input:active, 
+input[type="text"]:active, 
+input[type="password"]:active, 
 textarea:focus, 
-input:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
 button:focus,
 button:active,
 button:hover,
 label:focus,
+select,
+.custom-select
 .btn:active,
 .btn.active
 {

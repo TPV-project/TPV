@@ -74,15 +74,16 @@ export default class EditarProducto extends Component {
         axios.put('http://localhost:3000/api/products/'+this.props.match.params.id, producto)
             .then(res => console.log(res.data));
 
+            window.location.href = "/producto"
     }
 
     render() {
         return (
             <div>
-                <h3>Editar producto</h3>
-                <form onSubmit={this.onSubmit}>
+                <h1 className="mt-3">Editar producto</h1>
+                <form onSubmit={this.onSubmit} className="mt-3">
                     <div className="form-group">
-                        <label>Nombre: </label>
+                        <label>Nombre del producto: </label>
                         <input
                             required
                             type="text"
@@ -114,6 +115,7 @@ export default class EditarProducto extends Component {
                     <div className="form-group">
                         <label>Comanda para cocina: </label>
                         <input
+                            className="ml-2"
                             type="checkbox"
                             id='cocina'
                             value={this.state.cocina}
@@ -121,7 +123,8 @@ export default class EditarProducto extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Modificar" className="btn btn-primary" />
+                        <input type="submit" value="Modificar" className="btn btn-info" />
+                        <a href="http://localhost:3001/producto" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
             </div>

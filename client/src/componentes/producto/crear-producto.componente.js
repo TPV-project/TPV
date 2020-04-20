@@ -21,7 +21,6 @@ export default class CrearProducto extends Component {
         }
     }
 
-
     onChangeNombre(e) {
         this.setState({
             nombre: e.target.value
@@ -56,19 +55,24 @@ export default class CrearProducto extends Component {
             cocina: this.state.cocina
         }
 
-        /*console.log(producto);*/
         axios.post('http://localhost:3000/api/products', producto)
             .then(res => console.log(res.data));
         
+        this.setState({
+            nombre: '',
+            precio_llevar: 0,
+            precio_barra: 0,
+            cocina: false
+        });
     }
     
     render(){
         return(
             <div>
-                <h3>Crear nuevo producto</h3>
-                <form onSubmit={this.onSubmit}>
+                <h1 className="mt-3">Crear nuevo producto</h1>
+                <form onSubmit={this.onSubmit} className="mt-3">
                     <div className="form-group">
-                        <label>Nombre: </label>
+                        <label>Nombre del producto: </label>
                         <input 
                         required
                         type="text"
@@ -98,15 +102,17 @@ export default class CrearProducto extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Comanda para cocina: </label>
-                        <input 
+                        <label>Comanda para cocina:</label>
+                        <input
+                        className="ml-2" 
                         type="checkbox"
                         value={this.state.cocina}
                         onClick={this.onChangeCocina}
                         />
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Crear" className="btn btn-primary"/>
+                        <input type="submit" value="Crear" className="btn btn-success"/>
+                        <a href="http://localhost:3001/producto" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
             </div>

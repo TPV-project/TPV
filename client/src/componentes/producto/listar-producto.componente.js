@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Error } from 'mongoose';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import '../../App.css';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-const ProductosLista = props => (
 
+const ProductosLista = props => (
     <tr>
         <td>{props.productos.nombre}   </td>
         <td>{props.productos.precio_llevar}</td>
@@ -14,7 +13,6 @@ const ProductosLista = props => (
         <td>{props.productos.cocina}</td>
         <td><Link to={"/editar/producto/"+props.productos._id}><BsPencil/></Link> | <a href="#" onClick={()=> {props.deleteProduct(props.productos._id)}}><BsTrash/></a></td>
     </tr>
-
 )
 
 export default class ListarProducto extends Component {
@@ -74,6 +72,7 @@ export default class ListarProducto extends Component {
                             <th>Precio para llevar</th>
                             <th>Precio para cocina</th>
                             <th>Cocina</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

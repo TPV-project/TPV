@@ -40,20 +40,21 @@ export default class CrearUsuario extends Component {
 
     onChangeNombre(e) {
         this.setState({
-            nombre: e.target.value
+            nombre: e.target.value,
+            username: this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''),
         });
+        
     }
 
     onChangeApellidos(e) {
         this.setState({
-            apellidos: e.target.value
+            apellidos: e.target.value,
+            username: this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''),
         });
     }
 
     onChangeUsername(e) {
-        this.setState({
-            username: e.target.value
-        });
+            this.state.username = e;
     }
 
     onChangePassword(e) {
@@ -95,12 +96,8 @@ export default class CrearUsuario extends Component {
     render(){
         return(
             <div>
-            <div className="jumbotron jumbotron-fluid border-bottom border-info">
-              <div className="container">
-                <h1 className="display-4">Añadir usuario</h1>
-              </div>
-            </div>
-                <form onSubmit={this.onSubmit}>
+                <h1 className="mt-3">Añadir usuario</h1>
+                <form onSubmit={this.onSubmit} className="mt-3">
                     <div className="form-group">
                         <label>Nombre: </label>
                         <input
@@ -109,6 +106,7 @@ export default class CrearUsuario extends Component {
                         className="form-control"
                         value={this.state.nombre}
                         onChange={this.onChangeNombre}
+                        onBlur={this.onChangeUsername(this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''))}
                         />
                     </div>
                     <div className="form-group">
@@ -119,16 +117,16 @@ export default class CrearUsuario extends Component {
                         className="form-control"
                         value={this.state.apellidos}
                         onChange={this.onChangeApellidos}
+                        onBlur={this.onChangeUsername(this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''))}
                         />
                     </div>
                     <div className="form-group">
                         <label>Nombre de usuario: </label>
                         <input
-                        required
                         type="text"
                         className="form-control"
                         value={this.state.username}
-                        onChange={this.onChangeUsername}
+                        disabled
                         />
                     </div>
                     <div className="form-group">
@@ -162,17 +160,15 @@ export default class CrearUsuario extends Component {
                         <label>Activo: </label>
                         <input
                         type="checkbox"
-                        className="custom-control custom-checkbox"
+                        className="ml-2"
                         value={this.state.activo}
                         onChange={this.onChangeActivo}
                         defaultChecked
                         />
                     </div>
-                    <div className="form-group float-right">
-                        <input type="submit" value="Crear" className="btn btn-primary"/>
-                    </div>
-                    <div className="form-group float-left">
-                        <a href="http://localhost:3001/usuario" type="button" className="btn btn-danger">Cancelar</a>
+                    <div className="form-group">
+                        <input type="submit" value="Crear" className="btn btn-success"/>
+                        <a href="http://localhost:3001/usuario" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
             </div>
