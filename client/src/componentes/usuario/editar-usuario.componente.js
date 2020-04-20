@@ -29,6 +29,7 @@ export default class EditarUsuario extends Component {
     componentDidMount() {
       axios.get('http://localhost:3000/api/usuario/'+this.props.match.params.id)
         .then(response => {
+          document.getElementById('activo').checked = response.data.activo;
           this.setState({
             nombre: response.data.nombre,
             apellidos: response.data.apellidos,
@@ -110,7 +111,7 @@ export default class EditarUsuario extends Component {
             <div>
             <div className="jumbotron jumbotron-fluid border-bottom border-info">
               <div className="container">
-                <h1 className="display-4">Editar usuario</h1>
+                <h1 className="display-4 text-center">Editar usuario</h1>
               </div>
             </div>
                 <form onSubmit={this.onSubmit}>
@@ -176,6 +177,7 @@ export default class EditarUsuario extends Component {
                         <input
                         type="checkbox"
                         className="custom-control custom-checkbox"
+                        id="activo"
                         value={this.state.activo}
                         onChange={this.onChangeActivo}
                         />

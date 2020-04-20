@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Error } from 'mongoose';
+//import { Error } from 'mongoose';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import '../../App.css';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -29,11 +29,23 @@ export default class ListUser extends Component {
   componentDidMount() {
     axios.get('http://localhost:3000/api/usuario')
       .then(response => {
+        this.comprobarActivo(response)
         this.setState({ usuarios: response.data })
       })
       .catch((error) => {
         console.log(error);
       })
+  }
+
+  //Comprueba si el elemento activo es true o false y lo muestra en la tabla como Sí o No
+  comprobarActivo(response) {
+    for(var i = 0;i<response.data.length;i++){
+      if(response.data[i]['activo']) {
+        response.data[i]['activo'] = 'Sí';
+      } else {
+        response.data[i]['activo'] = 'No';
+      }
+    }
   }
 
   deleteUser(id) {
