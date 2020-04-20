@@ -25,10 +25,9 @@ export default class ListarProducto extends Component {
     }
 
     componentDidMount() {
-
-
         axios.get('http://localhost:3000/api/products')
             .then(response => {
+                this.comprobarCocina(response)
                 this.setState({ productos: response.data })
             })
             .catch((error) => {
@@ -36,6 +35,15 @@ export default class ListarProducto extends Component {
             })
     }
 
+    comprobarCocina(response) {
+      for(var i=0;i<response.data.length;i++) {
+        if(response.data[i]['cocina']) {
+          response.data[i]['cocina'] = 'Sí';
+        } else {
+          response.data[i]['cocina'] = 'No';
+        }
+      }
+    }
 
     deleteProduct(id){
         axios.delete('http://localhost:3000/api/products/' + id)
@@ -46,8 +54,7 @@ export default class ListarProducto extends Component {
         })
     }
 
-    productosList(){
-        console.log(this.state.productos);
+    productosList(){        
         return this.state.productos.map(currentproductos => {
             return <ProductosLista productos={currentproductos} deleteProduct={this.deleteProduct} key= {currentproductos._id}/>;
         })

@@ -22,6 +22,7 @@ export default class EditarProducto extends Component {
     componentDidMount() {
         axios.get('http://localhost:3000/api/products/'+this.props.match.params.id)
             .then(response => {
+              document.getElementById('cocina').checked = response.data.cocina;
               this.setState({
                 nombre: response.data.nombre,
                 precio_llevar: response.data.precio_llevar,
@@ -112,6 +113,7 @@ export default class EditarProducto extends Component {
                         <label>Comanda para cocina: </label>
                         <input
                             type="checkbox"
+                            id='cocina'
                             value={this.state.cocina}
                             onClick={this.onChangeCocina}
                         />
