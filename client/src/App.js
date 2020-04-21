@@ -1,28 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+//Css
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import Base from "./componentes/home.componente"
 //Productos
 import EditarProducto from "./componentes/producto/editar-producto.componente";
 import CrearProducto from "./componentes/producto/crear-producto.componente";
-import Base from "./componentes/home.componente"
 import ListarProducto from './componentes/producto/listar-producto.componente';
-
 //Usuarios
 import ListarUsuario from "./componentes/usuario/listar-usuario.componente";
 import CrearUsuario from "./componentes/usuario/crear-usuario.componente";
 import EditarUsuario from "./componentes/usuario/editar-usuario.componente";
+//Navbar
+import Navbar from "./componentes/navbar.componente";
 
 function App() {
   return (
     <Router>
-      <nav className="navbar bg-dark">
-        <a className="nav-link" href="http://localhost:3001/">Inicio</a>
-        <a className="nav-link" href="http://localhost:3001/producto">Productos</a>
-        <a className="nav-link" href="#">Caja</a>
-        <a className="nav-link" href="http://localhost:3001/usuario">Usuarios</a>
-      </nav>
+      <Navbar/>
       <div className="container">
         <Route path="/" exact component={Base} />
         <Route path="/producto" exact component={ListarProducto} />

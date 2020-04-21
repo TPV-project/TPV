@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { BsPencil, BsTrash } from 'react-icons/bs';
-import '../../App.css';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//Iconos
+import { ReactComponent as Editar } from '../../iconos/edit.svg';
+import { ReactComponent as Eliminar } from '../../iconos/trash-2.svg';
 
 const ProductosLista = props => (
     <tr>
@@ -11,7 +11,7 @@ const ProductosLista = props => (
         <td>{props.productos.precio_llevar}</td>
         <td>{props.productos.precio_barra}</td>
         <td>{props.productos.cocina}</td>
-        <td><Link to={"/editar/producto/"+props.productos._id}><BsPencil/></Link> | <a href="#" onClick={()=> {props.deleteProduct(props.productos._id)}}><BsTrash/></a></td>
+        <td><Link id="editar" to={"/editar/producto/"+props.productos._id}><Editar/></Link> | <a href="#" id="eliminar" onClick={()=> {props.deleteProduct(props.productos._id)}}><Eliminar/></a></td>
     </tr>
 )
 
@@ -54,7 +54,7 @@ export default class ListarProducto extends Component {
         })
     }
 
-    productosList(){        
+    productosList(){
         return this.state.productos.map(currentproductos => {
             return <ProductosLista productos={currentproductos} deleteProduct={this.deleteProduct} key= {currentproductos._id}/>;
         })
@@ -79,7 +79,7 @@ export default class ListarProducto extends Component {
                     {this.productosList()}
                     </tbody>
                 </table>
-                <a href="http://localhost:3001/crear/producto" type="button" className="btn btn-primary mt-2">Crear producto</a>
+                <a href="http://localhost:3001/crear/producto" type="button" className="btn btn-danger mt-2">Añadir producto</a>
             </div>
         )
     }

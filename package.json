@@ -25,6 +25,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.7",
     "morgan": "^1.10.0",
+    "react-css-transition": "^0.7.4",
     "react-icons": "^3.9.0"
   },
   "devDependencies": {

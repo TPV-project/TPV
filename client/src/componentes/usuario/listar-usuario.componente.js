@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { BsPencil, BsTrash } from 'react-icons/bs';
-import '../../App.css';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//Iconos
+import { ReactComponent as Editar } from '../../iconos/edit.svg';
+import { ReactComponent as Eliminar } from '../../iconos/trash-2.svg';
 
 const UsuariosLista = props => (
   <tr>
@@ -12,7 +12,7 @@ const UsuariosLista = props => (
     <td>{props.usuarios.username}</td>
     <td>{props.usuarios.rol}</td>
     <td>{props.usuarios.activo}</td>
-    <td><Link to={"/editar/usuario/"+props.usuarios._id}><BsPencil/></Link> | <a href="#" onClick={()=> {props.deleteUser(props.usuarios._id)}}><BsTrash/></a></td>
+    <td><Link id="editar" to={"/editar/usuario/"+props.usuarios._id}><Editar/></Link> | <a href="#" id="eliminar" onClick={()=> {props.deleteUser(props.usuarios._id)}}><Eliminar/></a></td>
   </tr>
 )
 

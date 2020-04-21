@@ -8,8 +8,7 @@ export default class CrearUsuario extends Component {
         super(props);
 
         this.onChangeNombre = this.onChangeNombre.bind(this);
-        this.onChangeApellidos = this.onChangeApellidos.bind(this);
-        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeApellidos = this.onChangeApellidos.bind(this);        
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeRol = this.onChangeRol.bind(this);
         this.onChangeActivo = this.onChangeActivo.bind(this);
@@ -93,11 +92,19 @@ export default class CrearUsuario extends Component {
         window.location = '/usuario';
     }
 
+    asignaUsername(val) {
+      this.state.username = val;
+    }
+
     render(){
         return(
             <div>
-                <h1 className="mt-3">Añadir usuario</h1>
-                <form onSubmit={this.onSubmit} className="mt-3">
+            <div className="jumbotron jumbotron-fluid border-bottom border-info">
+              <div className="container">
+                <h1 className="display-4">Añadir usuario</h1>
+              </div>
+            </div>
+                <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Nombre: </label>
                         <input
@@ -106,7 +113,6 @@ export default class CrearUsuario extends Component {
                         className="form-control"
                         value={this.state.nombre}
                         onChange={this.onChangeNombre}
-                        onBlur={this.onChangeUsername(this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''))}
                         />
                     </div>
                     <div className="form-group">
@@ -117,28 +123,31 @@ export default class CrearUsuario extends Component {
                         className="form-control"
                         value={this.state.apellidos}
                         onChange={this.onChangeApellidos}
-                        onBlur={this.onChangeUsername(this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''))}
                         />
                     </div>
                     <div className="form-group">
                         <label>Nombre de usuario: </label>
                         <input
+                        required
                         type="text"
                         className="form-control"
                         value={this.state.username}
-                        disabled
+                        onChange={this.onChangeUsername}
                         />
                     </div>
-                    <div className="form-group">
-                        <label>Contraseña: </label>
-                        <input
-                        required
-                        type="password"
-                        className="form-control"
-                        value={this.state.password}
-                        onChange={this.onChangePassword}
-                        />
+                    <div className="col">
+                      <div className="form-group">
+                          <label>Contraseña: </label>
+                          <input
+                          required
+                          type="password"
+                          className="form-control"
+                          value={this.state.password}
+                          onChange={this.onChangePassword}
+                          />
+                      </div>
                     </div>
+                  </div>
                     <div className="form-group">
                         <label>Rol: </label>
                         <select
@@ -166,9 +175,11 @@ export default class CrearUsuario extends Component {
                         defaultChecked
                         />
                     </div>
-                    <div className="form-group">
-                        <input type="submit" value="Crear" className="btn btn-success"/>
-                        <a href="http://localhost:3001/usuario" type="button" className="btn btn-danger ml-3">Cancelar</a>
+                    <div className="form-group float-right">
+                        <input type="submit" value="Crear" className="btn btn-primary"/>
+                    </div>
+                    <div className="form-group float-left">
+                        <a href="http://localhost:3001/usuario" type="button" className="btn btn-danger">Cancelar</a>
                     </div>
                 </form>
             </div>
