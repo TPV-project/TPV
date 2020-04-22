@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../../App.css';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { Content, Row, Box, Col, Button } from 'adminlte-2-react';
 
 export default class CrearProducto extends Component {
     constructor(props) {
@@ -44,7 +43,7 @@ export default class CrearProducto extends Component {
             cocina: e.target.checked
         });
     }
-    
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -57,7 +56,7 @@ export default class CrearProducto extends Component {
 
         axios.post('http://localhost:3000/api/products', producto)
             .then(res => console.log(res.data));
-        
+
         this.setState({
             nombre: '',
             precio_llevar: 0,
@@ -65,15 +64,20 @@ export default class CrearProducto extends Component {
             cocina: false
         });
     }
-    
+
     render(){
         return(
-            <div>
-                <h1 className="mt-3">Crear nuevo producto</h1>
+    <Content title="Catálogo" subTitle="Añadir producto" browserTitle="Catálogo">
+      <Row>
+        <Col xs={12}>
+          <Box>
+            <div className="box-header"></div>
+            <div className="box-body">
+              <div className="row">
                 <form onSubmit={this.onSubmit} className="mt-3">
-                    <div className="form-group">
+                    <div className="form-group col-xs-12">
                         <label>Nombre del producto: </label>
-                        <input 
+                        <input
                         required
                         type="text"
                         className="form-control"
@@ -81,9 +85,9 @@ export default class CrearProducto extends Component {
                         onChange={this.onChangeNombre}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Precio para llevar: </label>
-                        <input 
+                        <input
                         required
                         type="text"
                         className="form-control"
@@ -91,9 +95,9 @@ export default class CrearProducto extends Component {
                         onChange={this.onChangePrecioLlevar}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Precio para barra: </label>
-                        <input 
+                        <input
                         required
                         type="text"
                         className="form-control"
@@ -101,21 +105,30 @@ export default class CrearProducto extends Component {
                         onChange={this.onChangePrecioBarra}
                         />
                     </div>
-                    <div className="form-group">
-                        <label>Comanda para cocina:</label>
+                    <div className="form-group col-xs-12">
+                      <div className="row col-xs-12">
+                        <label>Comanda para cocina: </label>
+                      </div>
+                      <div className="row col-xs-12">
                         <input
-                        className="ml-2" 
+                        className="ml-2"
                         type="checkbox"
                         value={this.state.cocina}
                         onClick={this.onChangeCocina}
                         />
+                      </div>
                     </div>
-                    <div className="form-group">
-                        <input type="submit" value="Crear" className="btn btn-success"/>
-                        <a href="http://localhost:3001/producto" type="button" className="btn btn-danger ml-3">Cancelar</a>
+                    <div className="form-group col-xs-12">
+                        <input type="submit" value="Crear" className="btn btn-primary"/>
+                        <a href="http://localhost:3001/productos" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
+              </div>
             </div>
+          </Box>
+        </Col>
+      </Row>
+    </Content>
         )
     }
 }

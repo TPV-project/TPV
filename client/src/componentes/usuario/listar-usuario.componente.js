@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import AdminLTE, { Sidebar, Content, Row, Box, Col, Button } from 'adminlte-2-react';
 import axios from 'axios';
 //Iconos
 import { ReactComponent as Editar } from '../../iconos/edit.svg';
 import { ReactComponent as Eliminar } from '../../iconos/trash-2.svg';
+//css
+import '../../index.css';
 
 const UsuariosLista = props => (
   <tr>
@@ -12,7 +14,7 @@ const UsuariosLista = props => (
     <td>{props.usuarios.username}</td>
     <td>{props.usuarios.rol}</td>
     <td>{props.usuarios.activo}</td>
-    <td><Link id="editar" to={"/editar/usuario/"+props.usuarios._id}><Editar/></Link> | <a href="#" id="eliminar" onClick={()=> {props.deleteUser(props.usuarios._id)}}><Eliminar/></a></td>
+    <td><a className="btn btn-app" title={"Editar "+props.usuarios.username} href={"/editar/usuario/"+props.usuarios._id}><Editar/></a><a href="#" className="btn btn-app" title={"Eliminar "+props.usuarios.username} onClick={()=> {props.deleteUser(props.usuarios._id)}}><Eliminar/></a></td>
   </tr>
 )
 
@@ -63,25 +65,35 @@ export default class ListUser extends Component {
 
   render() {
     return (
-      <div>
-          <h1 className="mt-3">Lista de usuarios</h1>
-          <table className="table mt-3">
-            <thead className="thead-dark">
-              <tr>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Nombre de usuario</th>
-                <th>Rol</th>
-                <th>Activo</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.userList()}
-            </tbody>
-          </table>
-        <a href="http://localhost:3001/crear/usuario" type="button" className="btn btn-danger mt-2">Añadir usuario</a>
-      </div>
+  <Content title="Usuarios" subTitle="Gestiona los usuarios de la aplicación" browserTitle="Usuarios">
+    <Row>
+      <Col xs={12}>
+        <a href="/crear/usuario" type="button" className="btn btn-primary mt-2">Añadir usuario</a>
+        <Box>
+          <div class="box-header"></div>
+          <div class="box-body">
+            <div class="row">
+              <table className="table table-hover mt-3">
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Nombre de usuario</th>
+                    <th>Rol</th>
+                    <th>Activo</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.userList()}
+                </tbody>                
+              </table>
+            </div>
+          </div>
+        </Box>
+      </Col>
+    </Row>
+  </Content>
     )
   }
 }

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import AdminLTE, { Sidebar, Content, Row, Box, Col, Button } from 'adminlte-2-react';
 import axios from 'axios';
 //Iconos
 import { ReactComponent as Editar } from '../../iconos/edit.svg';
 import { ReactComponent as Eliminar } from '../../iconos/trash-2.svg';
+//css
+import '../../index.css';
 
 const ProductosLista = props => (
     <tr>
@@ -11,7 +13,7 @@ const ProductosLista = props => (
         <td>{props.productos.precio_llevar}</td>
         <td>{props.productos.precio_barra}</td>
         <td>{props.productos.cocina}</td>
-        <td><Link id="editar" to={"/editar/producto/"+props.productos._id}><Editar/></Link> | <a href="#" id="eliminar" onClick={()=> {props.deleteProduct(props.productos._id)}}><Eliminar/></a></td>
+        <td><a className="btn btn-app" title={"Editar "+props.productos.nombre} href={"/editar/producto/"+props.productos._id}><Editar/></a><a href="#" className="btn btn-app" title={"Eliminar "+props.productos.nombre} onClick={()=> {props.deleteProduct(props.productos._id)}}><Eliminar/></a></td>
     </tr>
 )
 
@@ -63,24 +65,43 @@ export default class ListarProducto extends Component {
 
     render() {
         return (
-            <div>
-                <h1 className="mt-3">Lista de productos</h1>
-                <table className="table mt-3">
-                    <thead className="thead-dark">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Precio para llevar</th>
-                            <th>Precio para cocina</th>
-                            <th>Cocina</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {this.productosList()}
-                    </tbody>
+    <Content title="Catálogo" subTitle="Gestiona los productos de la aplicación" browserTitle="Usuarios">
+      <Row>
+        <Col xs={12}>
+          <a href="/crear/producto" type="button" className="btn btn-primary mt-2">Añadir producto</a>
+          <Box>
+            <div class="box-header"></div>
+            <div class="box-body">
+              <div class="row">
+                <table className="table table-hover table mt-3">
+                  <thead className="thead-dark">
+                      <tr>
+                          <th>Nombre</th>
+                          <th>Precio para llevar</th>
+                          <th>Precio para barra</th>
+                          <th>Cocina</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {this.productosList()}
+                  </tbody>
+                  <tfoot className="thead-dark">
+                      <tr>
+                          <th>Nombre</th>
+                          <th>Precio para llevar</th>
+                          <th>Precio para cocina</th>
+                          <th>Cocina</th>
+                          <th></th>
+                      </tr>
+                  </tfoot>
                 </table>
-                <a href="http://localhost:3001/crear/producto" type="button" className="btn btn-danger mt-2">Añadir producto</a>
+              </div>
             </div>
+          </Box>
+        </Col>
+      </Row>
+    </Content>
         )
     }
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../../App.css';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { Content, Row, Box, Col, Button } from 'adminlte-2-react';
 
 export default class EditarUsuario extends Component {
     constructor(props) {
@@ -108,10 +107,15 @@ export default class EditarUsuario extends Component {
 
     render(){
         return(
-            <div>
-                <h1 className="mt-3">Editar usuario</h1>
+    <Content title="Usuarios" subTitle="Editar usuario" browserTitle="Usuarios">
+      <Row>
+        <Col xs={12}>
+          <Box>
+            <div className="box-header"></div>
+            <div className="box-body">
+              <div className="row">
                 <form onSubmit={this.onSubmit} className="mt-3">
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Nombre: </label>
                         <input
                         required
@@ -121,7 +125,7 @@ export default class EditarUsuario extends Component {
                         onChange={this.onChangeNombre}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Apellidos: </label>
                         <input
                         required
@@ -131,7 +135,7 @@ export default class EditarUsuario extends Component {
                         onChange={this.onChangeApellidos}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Nombre de usuario: </label>
                         <input
                         required
@@ -141,7 +145,7 @@ export default class EditarUsuario extends Component {
                         onChange={this.onChangeUsername}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Contraseña: </label>
                         <input
                         required
@@ -151,7 +155,7 @@ export default class EditarUsuario extends Component {
                         onChange={this.onChangePassword}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Rol: </label>
                         <select
                           required
@@ -168,22 +172,31 @@ export default class EditarUsuario extends Component {
                           }
                         </select>
                     </div>
-                    <div className="form-group">
-                        <label>Activo: </label>
+                    <div className="form-group col-xs-6">
+                      <div className="row col-xs-12">
+                        <label> Activo</label>
+                      </div>
+                      <div className="row col-xs-12">
                         <input
                         type="checkbox"
-                        className="ml-2"
+                        className="mr-2"
                         id="activo"
                         value={this.state.activo}
                         onChange={this.onChangeActivo}
                         />
+                      </div>
                     </div>
-                    <div className="form-group">
-                        <input type="submit" value="Modificar" className="btn btn-info"/>
-                        <a href="http://localhost:3001/usuario" type="button" className="btn btn-danger ml-3">Cancelar</a>
+                    <div className="form-group col-xs-12">
+                        <input type="submit" value="Modificar" className="btn btn-primary"/>
+                        <a href="http://localhost:3001/usuarios" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
+              </div>
             </div>
+          </Box>
+        </Col>
+      </Row>
+    </Content>
         )
     }
 }

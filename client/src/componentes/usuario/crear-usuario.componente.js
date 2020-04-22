@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../../App.css';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { Content, Row, Box, Col, Button } from 'adminlte-2-react';
 
 export default class CrearUsuario extends Component {
     constructor(props) {
         super(props);
 
         this.onChangeNombre = this.onChangeNombre.bind(this);
-        this.onChangeApellidos = this.onChangeApellidos.bind(this);        
+        this.onChangeApellidos = this.onChangeApellidos.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeRol = this.onChangeRol.bind(this);
         this.onChangeActivo = this.onChangeActivo.bind(this);
@@ -42,7 +41,7 @@ export default class CrearUsuario extends Component {
             nombre: e.target.value,
             username: this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''),
         });
-        
+
     }
 
     onChangeApellidos(e) {
@@ -89,7 +88,7 @@ export default class CrearUsuario extends Component {
         axios.post('http://localhost:3000/api/usuario', usuario)
             .then(res => console.log(res.data));
 
-        window.location = '/usuario';
+        window.location = '/usuarios';
     }
 
     asignaUsername(val) {
@@ -98,14 +97,15 @@ export default class CrearUsuario extends Component {
 
     render(){
         return(
-            <div>
-            <div className="jumbotron jumbotron-fluid border-bottom border-info">
-              <div className="container">
-                <h1 className="display-4">Añadir usuario</h1>
-              </div>
-            </div>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
+    <Content title="Usuarios" subTitle="Añadir usuario" browserTitle="Usuarios">
+      <Row>
+        <Col xs={12}>
+          <Box>
+            <div className="box-header"></div>
+            <div className="box-body">
+              <div className="row">
+                <form onSubmit={this.onSubmit} className="mt-3">
+                    <div className="form-group col-xs-6">
                         <label>Nombre: </label>
                         <input
                         required
@@ -115,7 +115,7 @@ export default class CrearUsuario extends Component {
                         onChange={this.onChangeNombre}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Apellidos: </label>
                         <input
                         required
@@ -125,7 +125,7 @@ export default class CrearUsuario extends Component {
                         onChange={this.onChangeApellidos}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Nombre de usuario: </label>
                         <input
                         required
@@ -135,20 +135,17 @@ export default class CrearUsuario extends Component {
                         onChange={this.onChangeUsername}
                         />
                     </div>
-                    <div className="col">
-                      <div className="form-group">
-                          <label>Contraseña: </label>
-                          <input
-                          required
-                          type="password"
-                          className="form-control"
-                          value={this.state.password}
-                          onChange={this.onChangePassword}
-                          />
-                      </div>
+                    <div className="form-group col-xs-6">
+                        <label>Contraseña: </label>
+                        <input
+                        required
+                        type="password"
+                        className="form-control"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                        />
                     </div>
-                  </div>
-                    <div className="form-group">
+                    <div className="form-group col-xs-6">
                         <label>Rol: </label>
                         <select
                           required
@@ -165,24 +162,33 @@ export default class CrearUsuario extends Component {
                           }
                         </select>
                     </div>
-                    <div className="form-group">
-                        <label>Activo: </label>
+                    <div className="form-group col-xs-6">
+                      <div className="row col-xs-12">
+                        <label> Activo</label>
+                      </div>
+                      <div className="row col-xs-12">
                         <input
                         type="checkbox"
-                        className="ml-2"
+                        className="mr-2"
                         value={this.state.activo}
                         onChange={this.onChangeActivo}
                         defaultChecked
                         />
+                      </div>
                     </div>
-                    <div className="form-group float-right">
-                        <input type="submit" value="Crear" className="btn btn-primary"/>
-                    </div>
-                    <div className="form-group float-left">
-                        <a href="http://localhost:3001/usuario" type="button" className="btn btn-danger">Cancelar</a>
+                    <div className="form-group col-xs-12">
+                      <div className="form-group">
+                          <input type="submit" value="Crear" className="btn btn-primary pr-2"/>
+                          <a href="http://localhost:3001/usuarios" type="button" className="btn btn-danger">Cancelar</a>
+                      </div>
                     </div>
                 </form>
+              </div>
             </div>
+          </Box>
+        </Col>
+      </Row>
+    </Content>
         )
     }
 }
