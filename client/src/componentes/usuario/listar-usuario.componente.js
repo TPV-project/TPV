@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import AdminLTE, { Sidebar, Content, Row, Box, Col, Button } from 'adminlte-2-react';
+import { Content, Row, Box, Col } from 'adminlte-2-react';
 import axios from 'axios';
 //Iconos
 import { ReactComponent as Editar } from '../../iconos/edit.svg';
 import { ReactComponent as Eliminar } from '../../iconos/trash-2.svg';
 //css
-import '../../index.css';
+import '../../App.css'
 
 const UsuariosLista = props => (
   <tr>
@@ -68,7 +68,6 @@ export default class ListUser extends Component {
   <Content title="Usuarios" subTitle="Gestiona los usuarios de la aplicación" browserTitle="Usuarios">
     <Row>
       <Col xs={12}>
-        <a href="/crear/usuario" type="button" className="btn btn-primary mt-2">Añadir usuario</a>
         <Box>
           <div class="box-header"></div>
           <div class="box-body">
@@ -91,6 +90,7 @@ export default class ListUser extends Component {
             </div>
           </div>
         </Box>
+        <a href="/crear/usuario" type="button" className="btn bg-purple">Añadir usuario</a>
       </Col>
     </Row>
   </Content>

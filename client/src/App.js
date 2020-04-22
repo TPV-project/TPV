@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AdminLTE, { Sidebar, Content, Row, Col, Box, Button } from 'adminlte-2-react';
+import AdminLTE, { Sidebar } from 'adminlte-2-react';
 
 import Base from "./componentes/home.componente";
 //Productos
@@ -30,7 +30,7 @@ class App extends Component {
         <ListarUsuario path="/usuarios" />
         <CrearUsuario path="/crear/usuario" />
         <EditarUsuario path="/editar/usuario/:id" />
-        //Copmponentes Productos
+        //Componentes Productos
         <ListarProducto path="/productos" />
         <CrearProducto path="/crear/producto" />
         <EditarProducto path="/editar/producto/:id" />

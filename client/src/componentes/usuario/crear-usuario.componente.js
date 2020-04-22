@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Content, Row, Box, Col, Button } from 'adminlte-2-react';
+import { Content, Row, Box, Col} from 'adminlte-2-react';
+
+import '../../App.css'
 
 export default class CrearUsuario extends Component {
     constructor(props) {
@@ -52,7 +54,7 @@ export default class CrearUsuario extends Component {
     }
 
     onChangeUsername(e) {
-            this.state.username = e;
+        this.state.username = e;
     }
 
     onChangePassword(e) {
@@ -113,6 +115,7 @@ export default class CrearUsuario extends Component {
                         className="form-control"
                         value={this.state.nombre}
                         onChange={this.onChangeNombre}
+                        onBlur={this.onChangeUsername(this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''))}
                         />
                     </div>
                     <div className="form-group col-xs-6">
@@ -123,6 +126,7 @@ export default class CrearUsuario extends Component {
                         className="form-control"
                         value={this.state.apellidos}
                         onChange={this.onChangeApellidos}
+                        onBlur={this.onChangeUsername(this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''))}
                         />
                     </div>
                     <div className="form-group col-xs-6">
@@ -132,7 +136,7 @@ export default class CrearUsuario extends Component {
                         type="text"
                         className="form-control"
                         value={this.state.username}
-                        onChange={this.onChangeUsername}
+                        disabled
                         />
                     </div>
                     <div className="form-group col-xs-6">
@@ -178,8 +182,8 @@ export default class CrearUsuario extends Component {
                     </div>
                     <div className="form-group col-xs-12">
                       <div className="form-group">
-                          <input type="submit" value="Crear" className="btn btn-primary pr-2"/>
-                          <a href="http://localhost:3001/usuarios" type="button" className="btn btn-danger">Cancelar</a>
+                          <input type="submit" value="Crear" className="btn btn-success"/>
+                          <a href="http://localhost:3001/usuarios" type="button" className="btn btn-danger ml-3">Cancelar</a>
                       </div>
                     </div>
                 </form>

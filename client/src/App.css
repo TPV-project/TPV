@@ -36,31 +36,51 @@
     transform: rotate(360deg);
   }
 }
-/*
-.nav-link {
-  color: white !important;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-textarea:hover,
-input[type="text"]:hover,
-input[type="password"]:hover,
-textarea:active,
-input[type="text"]:active,
-input[type="password"]:active,
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-button:focus,
-button:active,
-button:hover,
-label:focus,
-select,
-.custom-select
-.btn:active,
-.btn.active
-{
-    outline:0px !important;
-    -webkit-appearance:none;
-    box-shadow: none !important;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
-*/
+
+.btn-app {
+  padding: 0.5em !important;
+  min-width: 50px !important;
+  height: 30px !important;
+  max-width: 20px !important;
+}
+
+.ml-0 {
+  margin-left: 0 !important;
+}
+.ml-1 {
+  margin-left: 0.25rem !important;
+}
+.ml-2 {
+  margin-left: 0.5rem !important;
+}
+.ml-3 {
+  margin-left: 0.75rem !important;
+}
+
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+.mt-2 {
+  margin-top: 0.75rem !important;
+}

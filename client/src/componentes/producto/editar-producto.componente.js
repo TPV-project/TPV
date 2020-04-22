@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Content, Row, Box, Col, Button } from 'adminlte-2-react';
+import { Content, Row, Box, Col } from 'adminlte-2-react';
+
+import '../../App.css'
 
 export default class EditarProducto extends Component {
     constructor(props) {
@@ -131,7 +133,7 @@ export default class EditarProducto extends Component {
                       </div>
                     </div>
                     <div className="form-group col-xs-12">
-                        <input type="submit" value="Modificar" className="btn btn-primary mr-5" />
+                        <input type="submit" value="Modificar" className="btn btn-success mr-5" />
                         <a href="http://localhost:3001/productos" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>

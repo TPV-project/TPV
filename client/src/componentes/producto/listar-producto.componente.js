@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import AdminLTE, { Sidebar, Content, Row, Box, Col, Button } from 'adminlte-2-react';
+import { Content, Row, Box, Col } from 'adminlte-2-react';
 import axios from 'axios';
-//Iconos
+
 import { ReactComponent as Editar } from '../../iconos/edit.svg';
 import { ReactComponent as Eliminar } from '../../iconos/trash-2.svg';
-//css
-import '../../index.css';
+
+import '../../App.css'
 
 const ProductosLista = props => (
     <tr>
@@ -68,7 +68,6 @@ export default class ListarProducto extends Component {
     <Content title="Catálogo" subTitle="Gestiona los productos de la aplicación" browserTitle="Usuarios">
       <Row>
         <Col xs={12}>
-          <a href="/crear/producto" type="button" className="btn btn-primary mt-2">Añadir producto</a>
           <Box>
             <div class="box-header"></div>
             <div class="box-body">
@@ -86,19 +85,11 @@ export default class ListarProducto extends Component {
                   <tbody>
                   {this.productosList()}
                   </tbody>
-                  <tfoot className="thead-dark">
-                      <tr>
-                          <th>Nombre</th>
-                          <th>Precio para llevar</th>
-                          <th>Precio para cocina</th>
-                          <th>Cocina</th>
-                          <th></th>
-                      </tr>
-                  </tfoot>
                 </table>
               </div>
             </div>
           </Box>
+          <a href="/crear/producto" type="button" className="btn bg-purple">Añadir producto</a>
         </Col>
       </Row>
     </Content>

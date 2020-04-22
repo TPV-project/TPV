@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Content, Row, Box, Col, Button } from 'adminlte-2-react';
+import { Content, Row, Box, Col } from 'adminlte-2-react';
+
+import '../../App.css'
 
 export default class EditarUsuario extends Component {
     constructor(props) {
@@ -187,7 +189,7 @@ export default class EditarUsuario extends Component {
                       </div>
                     </div>
                     <div className="form-group col-xs-12">
-                        <input type="submit" value="Modificar" className="btn btn-primary"/>
+                        <input type="submit" value="Modificar" className="btn btn-success"/>
                         <a href="http://localhost:3001/usuarios" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
