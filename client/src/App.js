@@ -10,6 +10,9 @@ import EditarProducto from "./componentes/producto/editar-producto.componente";
 import ListarUsuario from "./componentes/usuario/listar-usuario.componente";
 import CrearUsuario from "./componentes/usuario/crear-usuario.componente";
 import EditarUsuario from "./componentes/usuario/editar-usuario.componente";
+//Tickets
+import ListarTicket from "./componentes/ticket/listar-ticket.componente";
+import CrearTicket from "./componentes/ticket/crear-ticket.componente";
 
 const { Item } = Sidebar;
 
@@ -34,6 +37,10 @@ class App extends Component {
         <ListarProducto path="/productos" />
         <CrearProducto path="/crear/producto" />
         <EditarProducto path="/editar/producto/:id" />
+        //Componentes Tickets
+        <ListarTicket path="/tickets" />
+        <CrearTicket path="/crear/ticket" />
+
       </AdminLTE>
     );
   }
