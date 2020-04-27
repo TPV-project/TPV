@@ -18,9 +18,9 @@ export default class CrearTicket extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            lista_productos: '',
+            listaProductos: '',
             total: 0,
-            fecha: 0,
+            fecha: '',
             efectivo: false,
             cambio: 0,
             barra: false
@@ -30,7 +30,7 @@ export default class CrearTicket extends Component {
 
     onChangeListaProductos(e) {
         this.setState({
-            lista_productos: e.target.value
+            listaProductos: e.target.value
         });
     }
 
@@ -67,7 +67,7 @@ export default class CrearTicket extends Component {
         e.preventDefault();
 
         const producto = {
-            lista_productos: this.state.lista_productos,
+            listaProductos: this.state.listaProductos,
             total: this.state.total,
             fecha: this.state.fecha,
             efectivo: this.state.efectivo,
@@ -79,9 +79,9 @@ export default class CrearTicket extends Component {
             .then(res => console.log(res.data));
 
         this.setState({
-          lista_productos: '',
+          listaProductos: '',
           total: 0,
-          fecha: 0,
+          fecha: '',
           efectivo: false,
           cambio: 0,
           barra: false
@@ -104,7 +104,7 @@ export default class CrearTicket extends Component {
                         required
                         type="text"
                         className="form-control"
-                        value={this.state.lista_productos}
+                        value={this.state.listaProductos}
                         onChange={this.onChangeListaProductos}
                         />
                     </div>
@@ -166,7 +166,7 @@ export default class CrearTicket extends Component {
                     </div>
                     <div className="form-group col-xs-12">
                         <input type="submit" value="Crear" className="btn btn-success"/>
-                        <a href="http://localhost:3001/productos" type="button" className="btn btn-danger ml-3">Cancelar</a>
+                        <a href="http://localhost:3001/tickets" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
               </div>

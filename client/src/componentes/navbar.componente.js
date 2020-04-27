@@ -23,7 +23,7 @@ export default class Navbar extends Component {
               <RightList>
                 <NavItem icon={<Dashboard />} path="/" title="Panel de control"/>
                 <NavItem icon={<Contabilidad />} path="/tickets" title="tickets"/>
-                <NavItem icon={<Contabilidad />} path="/" title="Contabilidad"/>
+                <NavItem icon={<Contabilidad />} path="#" title="Contabilidad"/>
                 <NavItem icon={<Catalogo />} path="/producto" title="Catálogo"/>
                 <NavItem icon={<Usuarios />} path="/usuario" title="Usuarios"/>
                 <NavItem icon={<Ajustes />} path="/caja" title="Caja"/>

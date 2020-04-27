@@ -9,11 +9,11 @@ import '../../App.css'
 
 const TicketsLista = props => (
     <tr>
-        <td>{props.tickets.lista_productos}   </td>
+        <td>{props.tickets.listaProductos}</td>
         <td>{props.tickets.total}</td>
         <td>{props.tickets.fecha}</td>
         <td>{props.tickets.efectivo}</td>
-        <td>{props.tickets.canvio}</td>
+        <td>{props.tickets.cambio}</td>
         <td>{props.tickets.barra}</td>
 
     </tr>
@@ -27,11 +27,39 @@ export default class ListarTicket extends Component {
 
         this.state = { tickets: [] }
     }
-
+    
+    comprobarFecha(response) {
+        for(var i=0;i<response.data.length;i++) {
+            var aux = response.data[i].fecha;
+            var modFecha = aux.slice(0, 10);
+            response.data[i].fecha = modFecha;
+        }
+    }
+    comprobarEfectivo(response) {
+        for(var i=0;i<response.data.length;i++) {
+          if(response.data[i]['efectivo']) {
+            response.data[i]['efectivo'] = 'Sí';
+          } else {
+            response.data[i]['efectivo'] = 'No';
+          }
+        }
+    }
+        comprobarBarra(response) {
+            for(var i=0;i<response.data.length;i++) {
+              if(response.data[i]['barra']) {
+                response.data[i]['barra'] = 'Sí';
+              } else {
+                response.data[i]['barra'] = 'No';
+              }
+            }
+        }
     componentDidMount() {
         axios.get('http://localhost:3000/api/tickets')
             .then(response => {
-                this.setState({ ticket: response.data })
+                this.comprobarBarra(response)
+                this.comprobarEfectivo(response) 
+                this.comprobarFecha(response)             
+                this.setState({ tickets: response.data })
             })
             .catch((error) => {
                 console.log(error);
@@ -50,7 +78,7 @@ export default class ListarTicket extends Component {
 
     ticketsList(){
         return this.state.tickets.map(currenttickets => {
-            return <ListarTicket tickets={currenttickets} deleteTicket={this.deleteTicket} key= {currenttickets._id}/>;
+            return <TicketsLista tickets={currenttickets} deleteTicket={this.deleteTicket} key= {currenttickets._id}/>;
         })
     }
 
@@ -61,9 +89,9 @@ export default class ListarTicket extends Component {
       <Row>
         <Col xs={12}>
           <Box>
-            <div class="box-header"></div>
-            <div class="box-body">
-              <div class="row">
+            <div className="box-header"></div>
+            <div className="box-body">
+              <div className="row">
                 <table className="table table-hover table mt-3">
                   <thead className="thead-dark">
                       <tr>

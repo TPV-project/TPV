@@ -21,7 +21,7 @@ class App extends Component {
   sidebar = [
     <Item key="dashboard" icon="fa-tachometer-alt" text="Panel de control" to="/" />,
     <Item key="catalogo" icon="fa-book-open" text="Catálogo" to="/productos" />,
-    <Item key="contabilidad" icon="fa-briefcase" text="Contabilidad" to="#"/>,
+    <Item key="contabilidad" icon="fa-briefcase" text="Contabilidad" to="/tickets"/>,
     <Item key="usuarios" icon="fa-user" text="Usuarios" to="/usuarios" />,
     <Item key="ajustes" icon="fa-cogs" text="Ajustes" to="#" />
   ]

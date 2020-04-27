@@ -69,9 +69,9 @@ export default class ListarProducto extends Component {
       <Row>
         <Col xs={12}>
           <Box>
-            <div class="box-header"></div>
-            <div class="box-body">
-              <div class="row">
+            <div className="box-header"></div>
+            <div className="box-body">
+              <div className="row">
                 <table className="table table-hover table mt-3">
                   <thead className="thead-dark">
                       <tr>
