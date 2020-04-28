@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Content, Row, Box, Col } from 'adminlte-2-react';
-
-import '../../App.css'
 
 export default class EditarProducto extends Component {
     constructor(props) {
@@ -10,6 +7,7 @@ export default class EditarProducto extends Component {
 
         this.onChangeNombre = this.onChangeNombre.bind(this);
         this.onChangePrecioLlevar = this.onChangePrecioLlevar.bind(this);
+        this.onChangeCategoria = this.onChangeCategoria.bind(this);
         this.onChangePrecioBarra = this.onChangePrecioBarra.bind(this);
         this.onChangeCocina = this.onChangeCocina.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -18,7 +16,9 @@ export default class EditarProducto extends Component {
             nombre: '',
             precio_llevar: 0,
             precio_barra: 0,
-            cocina: false
+            cocina: false,
+            categoria: '',
+            categorias: []
         }
     }
 
@@ -30,11 +30,20 @@ export default class EditarProducto extends Component {
                 nombre: response.data.nombre,
                 precio_llevar: response.data.precio_llevar,
                 precio_barra: response.data.precio_barra,
-                cocina: response.data.cocina
+                cocina: response.data.cocina,
+                categoria: response.data.categoria
               })
             })
             .catch((error) => {
                 console.log(error);
+            })
+        axios.get('http://localhost:3000/api/categoria')
+            .then(response => {
+            if(response.data.length > 0) {
+                this.setState({
+                categorias: response.data.map(categoria => categoria.nombre),                
+                })
+            }
             })
     }
 
@@ -56,6 +65,12 @@ export default class EditarProducto extends Component {
         });
     }
 
+    onChangeCategoria(e) {
+        this.setState({
+            categoria: e.target.value
+        });
+    }
+
     onChangeCocina(e) {
         this.setState({
             cocina: e.target.checked
@@ -69,22 +84,35 @@ export default class EditarProducto extends Component {
           nombre: this.state.nombre,
           precio_llevar: this.state.precio_llevar,
           precio_barra: this.state.precio_barra,
-          cocina: this.state.cocina
+          cocina: this.state.cocina,
+          categoria: this.state.categoria
         }
 
         axios.put('http://localhost:3000/api/products/'+this.props.match.params.id, producto)
             .then(res => console.log(res.data));
 
-            window.location.href = "/producto"
+            window.location.href = "/productos"
     }
 
     render() {
         return (
-    <Content title="Usuarios" subTitle="Editar usuario" browserTitle="Usuarios">
-      <Row>
-        <Col xs={12}>
-          <Box>
-            <div className="box-header"></div>
+            <div>
+            <div className="content-wrapper">
+            {/* Content Header (Page header) */}
+            <section className="content-header">
+                <h1>
+                Productos
+                <small>Editar {this.state.nombre}</small>
+                </h1>
+                <ol className="breadcrumb">
+                <li><a href="/"><i className="fa fa-dashboard" />Panel de control</a></li>   
+                <li><i className="fa fa-book" /> Catálogo</li>
+                <li><a href="/productos"><i className="fa fa-list" /> Productos</a></li>
+                <li className="active">Editar {this.state.nombre}</li>
+                </ol>
+            </section>
+            <section className="content">
+            <div className="box">
             <div className="box-body">
               <div className="row">
                 <form onSubmit={this.onSubmit} className="mt-3">
@@ -118,7 +146,24 @@ export default class EditarProducto extends Component {
                             onChange={this.onChangePrecioBarra}
                         />
                     </div>
-                    <div className="form-group col-xs-12">
+                    <div className="form-group col-xs-6">
+                        <label>Categoria: </label>
+                        <select
+                          required
+                          className="form-control custom-select"
+                          value={this.state.categoria}
+                          onChange={this.onChangeCategoria}>
+                          {
+                            this.state.categorias.map(function(categoria) {
+                              return <option
+                                key={categoria}
+                                value={categoria}>{categoria}
+                                </option>;
+                            })
+                          }
+                        </select>
+                    </div>
+                    <div className="form-group col-xs-6">
                       <div className="row col-xs-12">
                         <label>Comanda para cocina:</label>
                       </div>
@@ -137,12 +182,12 @@ export default class EditarProducto extends Component {
                         <a href="http://localhost:3001/productos" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
-              </div>
+                </div>
             </div>
-          </Box>
-        </Col>
-      </Row>
-    </Content>
+            </div>
+            </section>
+            </div>
+          </div>
         )
     }
 }

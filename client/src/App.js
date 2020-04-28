@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
-import AdminLTE, { Sidebar } from 'adminlte-2-react';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import Header from './Header'
+import Menu from './Menu'
+import Footer from './Footer'
 
-import Base from "./componentes/home.componente";
+//Home
+import Home from "./componentes/home.componente";
 //Productos
 import ListarProducto from './componentes/producto/listar-producto.componente';
 import CrearProducto from "./componentes/producto/crear-producto.componente";
@@ -10,32 +14,36 @@ import EditarProducto from "./componentes/producto/editar-producto.componente";
 import ListarUsuario from "./componentes/usuario/listar-usuario.componente";
 import CrearUsuario from "./componentes/usuario/crear-usuario.componente";
 import EditarUsuario from "./componentes/usuario/editar-usuario.componente";
+//Categorias
+import ListarCategoria from "./componentes/categoria/listar-categoria.componente";
+import CrearCategoria from "./componentes/categoria/crear-categoria.componente";
+import EditarCategoria from "./componentes/categoria/editar-categoria.componente";
 
-const { Item } = Sidebar;
-
-class App extends Component {
-
-  sidebar = [
-    <Item key="dashboard" icon="fa-tachometer-alt" text="Panel de control" to="/" />,
-    <Item key="catalogo" icon="fa-book-open" text="Catálogo" to="/productos" />,
-    <Item key="contabilidad" icon="fa-briefcase" text="Contabilidad" to="#"/>,
-    <Item key="usuarios" icon="fa-user" text="Usuarios" to="/usuarios" />,
-    <Item key="ajustes" icon="fa-cogs" text="Ajustes" to="#" />
-  ]
-
+export default class App extends Component {
   render() {
     return (
-      <AdminLTE title={["Mik", "Teck"]} titleShort={["M", "T"]} theme="purple" sidebar={this.sidebar}>
-        //Componentes Usuarios
-        <ListarUsuario path="/usuarios" />
-        <CrearUsuario path="/crear/usuario" />
-        <EditarUsuario path="/editar/usuario/:id" />
-        //Componentes Productos
-        <ListarProducto path="/productos" />
-        <CrearProducto path="/crear/producto" />
-        <EditarProducto path="/editar/producto/:id" />
-      </AdminLTE>
-    );
+      <Router>        
+        <div>        
+          <Header/>
+          <Menu/>          
+        </div>
+        {/*<!--Rutas Home-->*/}
+        <Route path="/" exact component={Home} />
+        <Route path="/fake_url" exact component={Home} />
+        {/*<!--Rutas Usuarios-->*/}
+        <Route path="/usuarios" component={ListarUsuario} />
+        <Route path="/crear/usuario" component={CrearUsuario} />
+        <Route path="/editar/usuario/:id" component={EditarUsuario} />
+        {/*<!--Rutas Productos-->*/}
+        <Route path="/productos" component={ListarProducto} />
+        <Route path="/crear/producto" component={CrearProducto} />
+        <Route path="/editar/producto/:id" component={EditarProducto} />
+        {/*<!--Rutas Categoria-->*/}
+        <Route path="/categorias" component={ListarCategoria} />
+        <Route path="/crear/categoria" component={CrearCategoria} />
+        <Route path="/editar/categoria/:id" component={EditarCategoria} />        
+        <Footer/>
+      </Router>
+    )
   }
 }
-export default App;

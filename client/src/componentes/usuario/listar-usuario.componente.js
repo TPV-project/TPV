@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Content, Row, Box, Col } from 'adminlte-2-react';
 import axios from 'axios';
 //Iconos
 import { ReactComponent as Editar } from '../../iconos/edit.svg';
 import { ReactComponent as Eliminar } from '../../iconos/trash-2.svg';
-//css
+
 import '../../App.css'
 
 const UsuariosLista = props => (
@@ -14,11 +13,11 @@ const UsuariosLista = props => (
     <td>{props.usuarios.username}</td>
     <td>{props.usuarios.rol}</td>
     <td>{props.usuarios.activo}</td>
-    <td><a className="btn btn-app" title={"Editar "+props.usuarios.username} href={"/editar/usuario/"+props.usuarios._id}><Editar/></a><a href="#" className="btn btn-app" title={"Eliminar "+props.usuarios.username} onClick={()=> {props.deleteUser(props.usuarios._id)}}><Eliminar/></a></td>
+    <td><a className="btn btn-app" title={"Editar "+props.usuarios.username} href={"/editar/usuario/"+props.usuarios._id}><Editar/></a><a href="fake_url" className="btn btn-app" title={"Eliminar "+props.usuarios.username} onClick={()=> {props.deleteUser(props.usuarios._id)}}><Eliminar/></a></td>
   </tr>
 )
 
-export default class ListUser extends Component {
+export default class ListarUsuario extends Component {
   constructor(props) {
     super(props);
 
@@ -28,6 +27,13 @@ export default class ListUser extends Component {
   }
 
   componentDidMount() {
+    const script = document.createElement("script");
+
+    script.src = 'js/table.js';
+    script.async = true;
+
+    document.body.appendChild(script);
+
     axios.get('http://localhost:3000/api/usuario')
       .then(response => {
         this.comprobarActivo(response)
@@ -65,35 +71,60 @@ export default class ListUser extends Component {
 
   render() {
     return (
-  <Content title="Usuarios" subTitle="Gestiona los usuarios de la aplicación" browserTitle="Usuarios">
-    <Row>
-      <Col xs={12}>
-        <Box>
-          <div class="box-header"></div>
-          <div class="box-body">
-            <div class="row">
-              <table className="table table-hover mt-3">
-                <thead className="thead-dark">
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Nombre de usuario</th>
-                    <th>Rol</th>
-                    <th>Activo</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.userList()}
-                </tbody>                
-              </table>
+      <div>
+      <div className="content-wrapper">
+      {/* Content Header (Page header) */}
+      <section className="content-header">
+          <h1>
+          Usuarios
+          <small>Gestiona los usuarios de la aplicación</small>
+          </h1>
+          <ol className="breadcrumb">
+          <li><a href="/"><i className="fa fa-dashboard" />Panel de control</a></li>          
+          <li className="active">Usuarios</li>
+          </ol>
+      </section>
+      {/* Main content */}
+      <section className="content">
+          <div className="row">
+          <div className="col-xs-12">
+              <div className="box">
+              <div className="box-header">
+              <a href="/crear/usuario" type="button" className="btn bg-purple">Añadir usuario</a>
+              </div>
+              {/* /.box-header */}
+              <div className="box-body">
+                  <table id="datatable" className="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Nombre de usuario</th>
+                        <th>Rol</th>
+                        <th>Activo</th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {this.userList()}                    
+                    </tbody>
+                  </table>
+                </div>
+                <div className="box-footer">
+                  
+                </div>
+                {/* /.box-body */}
+                </div>
+                {/* /.box */}
             </div>
-          </div>
-        </Box>
-        <a href="/crear/usuario" type="button" className="btn bg-purple">Añadir usuario</a>
-      </Col>
-    </Row>
-  </Content>
+            {/* /.col */}
+            </div>
+            {/* /.row */}
+        </section>
+        {/* /.content */}
+        </div>
+
+        </div>
     )
   }
 }

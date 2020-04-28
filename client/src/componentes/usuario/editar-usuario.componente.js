@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Content, Row, Box, Col } from 'adminlte-2-react';
-
-import '../../App.css'
 
 export default class EditarUsuario extends Component {
     constructor(props) {
@@ -104,16 +101,27 @@ export default class EditarUsuario extends Component {
         axios.put('http://localhost:3000/api/usuario/'+this.props.match.params.id, usuario)
             .then(res => console.log(res.data));
 
-        window.location = '/usuario';
+        window.location = '/usuarios';
     }
 
     render(){
         return(
-    <Content title="Usuarios" subTitle="Editar usuario" browserTitle="Usuarios">
-      <Row>
-        <Col xs={12}>
-          <Box>
-            <div className="box-header"></div>
+          <div>
+            <div className="content-wrapper">
+            {/* Content Header (Page header) */}
+            <section className="content-header">
+                <h1>
+                Usuarios
+                <small>Editar {this.state.username}</small>
+                </h1>
+                <ol className="breadcrumb">
+                <li><a href="/"><i className="fa fa-dashboard" />Panel de control</a></li>          
+                <li><a href="/usuarios"><i className="fa fa-user" />Usuarios</a></li>
+                <li className="active">Editar {this.state.username}</li>
+                </ol>
+            </section>
+            <section className="content">
+            <div className="box">
             <div className="box-body">
               <div className="row">
                 <form onSubmit={this.onSubmit} className="mt-3">
@@ -193,12 +201,12 @@ export default class EditarUsuario extends Component {
                         <a href="http://localhost:3001/usuarios" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
-              </div>
+                </div>
             </div>
-          </Box>
-        </Col>
-      </Row>
-    </Content>
+            </div>
+            </section>
+            </div>
+          </div>
         )
     }
 }

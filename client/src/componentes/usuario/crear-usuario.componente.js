@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Content, Row, Box, Col} from 'adminlte-2-react';
-
-import '../../App.css'
 
 export default class CrearUsuario extends Component {
     constructor(props) {
@@ -53,7 +50,7 @@ export default class CrearUsuario extends Component {
         });
     }
 
-    onChangeUsername(e) {
+    onChangeUsername(e) {        
         this.state.username = e;
     }
 
@@ -98,12 +95,23 @@ export default class CrearUsuario extends Component {
     }
 
     render(){
-        return(
-    <Content title="Usuarios" subTitle="Añadir usuario" browserTitle="Usuarios">
-      <Row>
-        <Col xs={12}>
-          <Box>
-            <div className="box-header"></div>
+        return( 
+          <div>
+            <div className="content-wrapper">
+            {/* Content Header (Page header) */}
+            <section className="content-header">
+                <h1>
+                Usuarios
+                <small>Añade un usuario</small>
+                </h1>
+                <ol className="breadcrumb">
+                <li><a href="/"><i className="fa fa-dashboard" />Panel de control</a></li>          
+                <li><a href="/usuarios"><i className="fa fa-user" />Usuarios</a></li>
+                <li className="active">Añadir usuario</li>
+                </ol>
+            </section>
+            <section className="content">
+            <div className="box">
             <div className="box-body">
               <div className="row">
                 <form onSubmit={this.onSubmit} className="mt-3">
@@ -189,10 +197,10 @@ export default class CrearUsuario extends Component {
                 </form>
               </div>
             </div>
-          </Box>
-        </Col>
-      </Row>
-    </Content>
+            </div>
+            </section>
+            </div>
+          </div>
         )
     }
 }

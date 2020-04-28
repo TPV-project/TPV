@@ -23,6 +23,7 @@ app.use('/api/tickets' ,require('./routes/tickets.routes'));
 app.use('/api/caja' ,require('./routes/caja.routes'));
 app.use('/api/usuario' ,require('./routes/usuario.routes'));
 app.use('/api/rol' ,require('./routes/rol.routes'));
+app.use('/api/categoria' ,require('./routes/categoria.routes'));
 
 // Static files
 app.use(express.static(path.join(path.dirname(__dirname), 'client/public'))); //lugar donde se encuentra index.html (base de todo)
