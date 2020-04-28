@@ -13,32 +13,32 @@ export default class CrearUsuario extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            nombre: '',
-            apellidos: '',
-            username: '',
-            password: '',
-            rol: '',
+            nombre: "",
+            apellidos: "",
+            username: "",
+            password: "",
+            rol: "",
             activo: true,
-            roles: []
-        }
+            roles: [],
+        };
     }
 
     componentDidMount() {
-      axios.get('http://localhost:3000/api/rol')
-        .then(response => {
-          if(response.data.length > 0) {
-            this.setState({
-              roles: response.data.map(rol => rol.tipo),
-              rol: response.data[0].tipo
-            })
-          }
-        })
+        axios.get("http://localhost:3000/api/rol").then((response) => {
+            if (response.data.length > 0) {
+                this.setState({
+                    roles: response.data.map((rol) => rol.tipo),
+                    rol: response.data[0].tipo,
+                });
+            }
+        });
     }
 
     onChangeNombre(e) {
         this.setState({
             nombre: e.target.value,
-            username: this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''),
+            username: this.state.nombre.charAt(0).toLowerCase() +
+                this.state.apellidos.toLowerCase().replace(/\s/g, ""),
         });
 
     }
@@ -46,7 +46,8 @@ export default class CrearUsuario extends Component {
     onChangeApellidos(e) {
         this.setState({
             apellidos: e.target.value,
-            username: this.state.nombre.charAt(0).toLowerCase()+this.state.apellidos.toLowerCase().replace(/\s/g, ''),
+            username: this.state.nombre.charAt(0).toLowerCase() +
+                this.state.apellidos.toLowerCase().replace(/\s/g, ""),
         });
     }
 
@@ -56,19 +57,19 @@ export default class CrearUsuario extends Component {
 
     onChangePassword(e) {
         this.setState({
-            password: e.target.value
+            password: e.target.value,
         });
     }
 
     onChangeRol(e) {
         this.setState({
-            rol: e.target.value
+            rol: e.target.value,
         });
     }
 
     onChangeActivo(e) {
         this.setState({
-            activo: e.target.checked
+            activo: e.target.checked,
         });
     }
 
@@ -91,7 +92,7 @@ export default class CrearUsuario extends Component {
     }
 
     asignaUsername(val) {
-      this.state.username = val;
+        this.state.username = val;
     }
 
     render(){
