@@ -90,91 +90,103 @@ export default class CrearTicket extends Component {
 
     render(){
         return(
-    <Content title="Catálogo" subTitle="Añadir ticket" browserTitle="Ticket">
-      <Row>
-        <Col xs={12}>
-          <Box>
-            <div className="box-header"></div>
+            <div>
+            <div className="content-wrapper">
+            {/* Content Header (Page header) */}
+            <section className="content-header">
+                <h1>
+                Usuarios
+                <small>Añade un usuario</small>
+                </h1>
+                <ol className="breadcrumb">
+                <li><a href="/"><i className="fa fa-dashboard" />Panel de control</a></li>
+                <li><i className="fa fa-book" /> Catálogo</li>
+                <li><a href="/productos"><i className="fa fa-list" /> Productos</a></li>
+                <li className="active">Añadir producto</li>
+                </ol>
+            </section>
+            <section className="content">
+            <div className="box">
             <div className="box-body">
               <div className="row">
                 <form onSubmit={this.onSubmit} className="mt-3">
-                    <div className="form-group col-xs-12">
-                        <label>Lista de productos: </label>
-                        <input
-                        required
-                        type="text"
-                        className="form-control"
-                        value={this.state.listaProductos}
-                        onChange={this.onChangeListaProductos}
-                        />
-                    </div>
-                    <div className="form-group col-xs-6">
-                        <label>Total: </label>
-                        <input
-                        required
-                        type="text"
-                        className="form-control"
-                        value={this.state.total}
-                        onChange={this.onChangeTotal}
-                        />
-                    </div>
-                    <div className="form-group col-xs-6">
-                        <label>Fecha: </label>
-                        <input
-                        required
-                        type="Date"
-                        className="form-control"
-                        value={this.state.fecha}
-                        onChange={this.onChangeFecha}
-                        />
-                    </div>
-                    <div className="form-group col-xs-12">
-                      <div className="row col-xs-12">
-                        <label>Efectivo: </label>
-                      </div>
-                      <div className="row col-xs-12">
-                        <input
-                        className="ml-2"
-                        type="checkbox"
-                        value={this.state.efectivo}
-                        onClick={this.onChangeEfectivo}
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group col-xs-6">
-                        <label>Cambio: </label>
-                        <input
-                        required
-                        type="text"
-                        className="form-control"
-                        value={this.state.cambio}
-                        onChange={this.onChangeCambio}
-                        />
-                    </div>
-                    <div className="form-group col-xs-12">
-                      <div className="row col-xs-12">
-                        <label>Barra: </label>
-                      </div>
-                      <div className="row col-xs-12">
-                        <input
-                        className="ml-2"
-                        type="checkbox"
-                        value={this.state.barra}
-                        onClick={this.onChangeBarra}
-                        />
-                      </div>
-                    </div>
+                <div className="form-group col-xs-12">
+                    <label>Lista de productos: </label>
+                    <input
+                    required
+                    type="text"
+                    className="form-control"
+                    value={this.state.listaProductos}
+                    onChange={this.onChangeListaProductos}
+                    />
+                </div>
+                <div className="form-group col-xs-6">
+                    <label>Total: </label>
+                    <input
+                    required
+                    type="text"
+                    className="form-control"
+                    value={this.state.total}
+                    onChange={this.onChangeTotal}
+                    />
+                </div>
+                <div className="form-group col-xs-6">
+                    <label>Fecha: </label>
+                    <input
+                    required
+                    type="Date"
+                    className="form-control"
+                    value={this.state.fecha}
+                    onChange={this.onChangeFecha}
+                    />
+                </div>
+                <div className="form-group col-xs-12">
+                  <div className="row col-xs-12">
+                    <label>Efectivo: </label>
+                  </div>
+                  <div className="row col-xs-12">
+                    <input
+                    className="ml-2"
+                    type="checkbox"
+                    value={this.state.efectivo}
+                    onClick={this.onChangeEfectivo}
+                    />
+                  </div>
+                </div>
+                <div className="form-group col-xs-6">
+                    <label>Cambio: </label>
+                    <input
+                    required
+                    type="text"
+                    className="form-control"
+                    value={this.state.cambio}
+                    onChange={this.onChangeCambio}
+                    />
+                </div>
+                <div className="form-group col-xs-12">
+                  <div className="row col-xs-12">
+                    <label>Barra: </label>
+                  </div>
+                  <div className="row col-xs-12">
+                    <input
+                    className="ml-2"
+                    type="checkbox"
+                    value={this.state.barra}
+                    onClick={this.onChangeBarra}
+                    />
+                  </div>
+                  </div>
                     <div className="form-group col-xs-12">
                         <input type="submit" value="Crear" className="btn btn-success"/>
                         <a href="http://localhost:3001/tickets" type="button" className="btn btn-danger ml-3">Cancelar</a>
                     </div>
                 </form>
-              </div>
+                </div>
             </div>
-          </Box>
-        </Col>
-      </Row>
-    </Content>
+            </div>
+            </section>
+            </div>
+          </div>
         )
     }
 }

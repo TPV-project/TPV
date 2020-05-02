@@ -18,14 +18,19 @@ import EditarUsuario from "./componentes/usuario/editar-usuario.componente";
 import ListarCategoria from "./componentes/categoria/listar-categoria.componente";
 import CrearCategoria from "./componentes/categoria/crear-categoria.componente";
 import EditarCategoria from "./componentes/categoria/editar-categoria.componente";
+//Tickets
+import ListarTicket from "./componentes/ticket/listar-ticket.componente";
+import CrearTicket from "./componentes/ticket/crear-ticket.componente";
+
+
 
 export default class App extends Component {
   render() {
     return (
-      <Router>        
-        <div>        
+      <Router>
+        <div>
           <Header/>
-          <Menu/>          
+          <Menu/>
         </div>
         {/*<!--Rutas Home-->*/}
         <Route path="/" exact component={Home} />
@@ -41,7 +46,11 @@ export default class App extends Component {
         {/*<!--Rutas Categoria-->*/}
         <Route path="/categorias" component={ListarCategoria} />
         <Route path="/crear/categoria" component={CrearCategoria} />
-        <Route path="/editar/categoria/:id" component={EditarCategoria} />        
+        <Route path="/editar/categoria/:id" component={EditarCategoria} />
+        {/*<!--Rutas Tickets-->*/}
+        <Route path="/tickets" component={ListarTicket} />
+        <Route path="/crear/ticket" component={CrearTicket} />
+
         <Footer/>
       </Router>
     )

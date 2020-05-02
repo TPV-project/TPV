@@ -27,7 +27,7 @@ export default class ListarTicket extends Component {
 
         this.state = { tickets: [] }
     }
-    
+
     comprobarFecha(response) {
         for(var i=0;i<response.data.length;i++) {
             var aux = response.data[i].fecha;
@@ -57,8 +57,8 @@ export default class ListarTicket extends Component {
         axios.get('http://localhost:3000/api/tickets')
             .then(response => {
                 this.comprobarBarra(response)
-                this.comprobarEfectivo(response) 
-                this.comprobarFecha(response)             
+                this.comprobarEfectivo(response)
+                this.comprobarFecha(response)
                 this.setState({ tickets: response.data })
             })
             .catch((error) => {
@@ -83,38 +83,60 @@ export default class ListarTicket extends Component {
     }
 
 
-    render() {
-        return (
-    <Content title="Tickets" subTitle="Gestiona los tickets de la aplicación" browserTitle="Tickets tittle">
-      <Row>
-        <Col xs={12}>
-          <Box>
-            <div className="box-header"></div>
-            <div className="box-body">
+      render() {
+        return (<div>
+          <div className="content-wrapper">
+          {/* Content Header (Page header) */}
+          <section className="content-header">
+              <h1>
+              Productos
+              <small>Gestiona los tickets de la aplicación</small>
+              </h1>
+              <ol className="breadcrumb">
+              <li><a href="/"><i className="fa fa-dashboard" />Panel de control</a></li>
+              <li><i className="fa fa-book" /> Contabilidad</li>
+              <li className="active">Tickets</li>
+              </ol>
+          </section>
+          {/* Main content */}
+          <section className="content">
               <div className="row">
-                <table className="table table-hover table mt-3">
-                  <thead className="thead-dark">
-                      <tr>
-                          <th>Lista Productos</th>
-                          <th>Total</th>
-                          <th>Fecha</th>
-                          <th>Efectivo</th>
-                          <th>Cambio</th>
-                          <th>Barra</th>
-                          <th></th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                  {this.ticketsList()}
-                  </tbody>
-                </table>
-              </div>
+              <div className="col-xs-12">
+                  <div className="box">
+                  <div className="box-header">
+                    <a href="/crear/ticket" type="button" className="btn bg-purple">Añadir Ticket</a>
+                  </div>
+                  {/* /.box-header */}
+                  <div className="box-body">
+                      <table id="datatable" className="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Lista Productos</th>
+                            <th>Total</th>
+                            <th>Fecha</th>
+                            <th>Efectivo</th>
+                            <th>Cambio</th>
+                            <th>Barra</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          {this.ticketsList()}
+                        </tbody>
+                      </table>
+                    </div>
+                    {/* /.box-body */}
+                    </div>
+                    {/* /.box */}
+                </div>
+                {/* /.col */}
+                </div>
+                {/* /.row */}
+            </section>
+            {/* /.content */}
             </div>
-          </Box>
-        <a href="/crear/ticket" type="button" className="btn bg-purple" >Añadir Tickets</a>
-        </Col>
-      </Row>
-    </Content>
+
+            </div>
         )
     }
 }
