@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Content, Row, Box, Col } from 'adminlte-2-react';
 import axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import { ReactComponent as Editar } from '../../iconos/edit.svg';
 import { ReactComponent as Eliminar } from '../../iconos/trash-2.svg';
 
-import '../../App.css'
 
 const TicketsLista = props => (
     <tr>
@@ -15,6 +15,7 @@ const TicketsLista = props => (
         <td>{props.tickets.efectivo}</td>
         <td>{props.tickets.cambio}</td>
         <td>{props.tickets.barra}</td>
+        <td><a href="#" className="btn btn-app" title={"Eliminar "+props.tickets.id} onClick={()=> {props.deleteTicket(props.tickets._id)}}><Eliminar/></a></td>
 
     </tr>
 )
@@ -26,6 +27,24 @@ export default class ListarTicket extends Component {
         this.deleteTicket = this.deleteTicket.bind(this);
 
         this.state = { tickets: [] }
+    }
+    componentDidMount() {
+      const script = document.createElement("script");
+
+      script.src = 'js/table.js';
+      script.async = true;
+
+      document.body.appendChild(script);
+        axios.get('http://localhost:3000/api/tickets')
+            .then(response => {
+                this.comprobarBarra(response)
+                this.comprobarEfectivo(response)
+                this.comprobarFecha(response)
+                this.setState({ tickets: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     comprobarFecha(response) {
@@ -53,27 +72,30 @@ export default class ListarTicket extends Component {
               }
             }
         }
-    componentDidMount() {
-        axios.get('http://localhost:3000/api/tickets')
-            .then(response => {
-                this.comprobarBarra(response)
-                this.comprobarEfectivo(response)
-                this.comprobarFecha(response)
-                this.setState({ tickets: response.data })
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+
 
 
     deleteTicket(id){
-        axios.delete('http://localhost:3000/api/tickets/' + id)
-            .then(res => console.log(res.data));
+      const options = {
+        message: 'Quieres eliminar el ticket?',
+        buttons: [
+          {label: 'Yes',
+            onClick: () => {
+              axios.delete('http://localhost:3000/api/tickets/' + id)
+              .then(res => console.log(res.data));
+              this.setState({
+              tickets: this.state.tickets.filter(el => el._id !== id)})}
+      },
+          {label: 'No'}
+        ],
+      };
+      try {
+      var con = confirmAlert(options);
 
-        this.setState({
-            tickets: this.state.tickets.filter(el => el._id !== id)
-        })
+      } catch (e) {
+        console.log(e, 'cancel')
+      }
+
     }
 
     ticketsList(){

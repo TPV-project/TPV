@@ -100,8 +100,8 @@ export default class CrearTicket extends Component {
                 </h1>
                 <ol className="breadcrumb">
                 <li><a href="/"><i className="fa fa-dashboard" />Panel de control</a></li>
-                <li><i className="fa fa-book" /> Catálogo</li>
-                <li><a href="/productos"><i className="fa fa-list" /> Productos</a></li>
+                <li><i className="fa fa-book" /> Contabilidad</li>
+                <li><a href="/productos"><i className="fa fa-list" /> Tickets</a></li>
                 <li className="active">Añadir producto</li>
                 </ol>
             </section>
@@ -178,7 +178,7 @@ export default class CrearTicket extends Component {
                   </div>
                     <div className="form-group col-xs-12">
                         <input type="submit" value="Crear" className="btn btn-success"/>
-                        <a href="http://localhost:3001/tickets" type="button" className="btn btn-danger ml-3">Cancelar</a>
+                        <a href="http://localhost:3001/tickets" type="button" className="btn btn-danger ml-3">Atras</a>
                     </div>
                 </form>
                 </div>
