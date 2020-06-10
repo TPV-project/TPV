@@ -26,7 +26,7 @@ export default class Navbar extends Component {
                 <NavItem icon={<Contabilidad />} path="#" title="Contabilidad"/>
                 <NavItem icon={<Catalogo />} path="/producto" title="Catálogo"/>
                 <NavItem icon={<Usuarios />} path="/usuario" title="Usuarios"/>
-                <NavItem icon={<Ajustes />} path="/caja" title="Caja"/>
+                <NavItem icon={<Caja />} path="/caja" title="Caja"/>
                 <NavItem icon={<Ajustes />} path="#" title="Ajustes de administrador"/>
               </RightList>
             </AlignRight>

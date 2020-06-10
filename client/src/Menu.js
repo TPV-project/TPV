@@ -32,7 +32,7 @@ export default class Menu extends Component {
                         </a>
                         <ul className="treeview-menu">
                             <li><a href="/tickets"><i className="fa fa-list" />Tickets</a></li>
-                            <li><a href="fake_url"><i className="fa fa-tag" />Caja</a></li>
+                            <li><a href="/cajas"><i className="fa fa-tag" />Caja</a></li>
                         </ul>
                     </li>
                     <li><a href="/usuarios"><i className="fa fa-user" /> <span>Usuarios</span></a></li>

@@ -21,7 +21,10 @@ import EditarCategoria from "./componentes/categoria/editar-categoria.componente
 //Tickets
 import ListarTicket from "./componentes/ticket/listar-ticket.componente";
 import CrearTicket from "./componentes/ticket/crear-ticket.componente";
-
+//Cajas
+import ListarCaja from "./componentes/caja/listar-caja.componente";
+import CrearCaja from "./componentes/caja/crear-caja.componente";
+//import EditarCaja from "./componentes/caja/editar-caja.componente";
 
 
 export default class App extends Component {
@@ -29,8 +32,8 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Header/>
-          <Menu/>
+          <Header />
+          <Menu />
         </div>
         {/*<!--Rutas Home-->*/}
         <Route path="/" exact component={Home} />
@@ -50,8 +53,10 @@ export default class App extends Component {
         {/*<!--Rutas Tickets-->*/}
         <Route path="/tickets" component={ListarTicket} />
         <Route path="/crear/ticket" component={CrearTicket} />
-
-        <Footer/>
+        {/*<!--Rutas Cajas-->*/}
+        <Route path="/cajas" component={ListarCaja} />
+        <Route path="/crear/caja" component={CrearCaja} />
+        <Footer />
       </Router>
     )
   }

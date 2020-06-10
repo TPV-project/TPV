@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     const { nombre, precio_llevar, precio_barra, cocina, categoria } =  req.body; //del body guarda los parametros indicados
     const producto = new Producto({ nombre, precio_llevar, precio_barra, cocina, categoria}); //crea un nuevo producto con esos parametros
     await producto.save(); //almacena el producto en la base de datos
-    res.json({status: 'Producto creado'}); //respuesta de producto creado
+    res.json({status: 'JAmon creado'}); //respuesta de producto creado
 });
 
 router.put('/:id', async (req, res) => {

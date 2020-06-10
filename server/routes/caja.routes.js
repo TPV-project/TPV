@@ -17,19 +17,21 @@ router.get('/:id', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-    const { cajaInicial, cajaFinal, sumaTarjeta } =  req.body; //del body guarda los parametros indicados
-    const caja = new Caja({ cajaInicial, cajaFinal, sumaTarjeta}); //crea un nuevo producto con esos parametros
-    await caja.save(); //almacena el producto en la base de datos
-    res.json({status: 'Registro de caja concluido creado'}); //respuesta de producto creado
+    const { cajaInicial, cajaFinal, sumaTarjeta, fecha } =  req.body; //del body guarda los parametros indicados
+    const caja = new Caja({ cajaInicial, cajaFinal, sumaTarjeta, fecha}); //crea una nueva caja con esos parametros
+    await caja.save(); //almacena la caja en la base de datos
+    res.json({status: 'Registro de caja concluido creado'}); //respuesta de caja creado
 });
 
 router.put('/:id', async (req, res) => {
-    const { cajaInicial, cajaFinal, sumaTarjeta } = req.body;
-    const nuevaCaja = { cajaInicial, cajaFinal, sumaTarjeta };
+    const { cajaInicial, cajaFinal, sumaTarjeta, fecha} = req.body;
+    const nuevaCaja = { cajaInicial, cajaFinal, sumaTarjeta, fecha};
     await Caja.findByIdAndUpdate(req.params.id, nuevaCaja); //busca por id y actualiza
-    res.json({status: 'Producto actualizado'}); //respuesta de producto actualizado
+    res.json({status: 'Caja actualizada'}); //respuesta de caja actualizado
 });
-
-
+router.delete('/:id', async (req, res) => {
+    await Caja.findByIdAndDelete(req.params.id); //busca por id y elimina
+    res.json({status: 'Caja eliminada'}); //respuesta de caja eliminado
+});
 
 module.exports = router;
