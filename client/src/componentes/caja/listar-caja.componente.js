@@ -34,12 +34,17 @@ export default class ListarCaja extends Component {
         axios.get('http://localhost:3000/api/caja')
             .then(response => {
                 this.comprobarFecha(response)
+
                 console.log(response.data);
                 this.setState({ cajas: response.data })
             })
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    actualizarDatos(){
+        
     }
 
     comprobarFecha(response) {

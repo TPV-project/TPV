@@ -136,7 +136,7 @@ export default class ListarTicket extends Component {
                                     onClose();
                                 }}
                             >
-                                Yes, Delete it!
+                                Si
                         </button>
                         </div>
                     );

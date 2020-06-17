@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     const ticket = new Ticket({ ticketProductos, total, fecha, efectivo, cambio, cantidad, barra }); //crea un nuevo ticket con esos parametros
     console.log(ticket);
     await ticket.save(); //almacena el ticket en la base de datos
-    res.json({status: 'JAMON creado'}); //respuesta de ticket creado
+    res.json({ticket}); //respuesta de ticket creado
 });
 
 router.put('/:id', async (req, res) => {

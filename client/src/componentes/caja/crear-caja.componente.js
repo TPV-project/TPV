@@ -107,7 +107,7 @@ export default class CrearCaja extends Component {
         axios.post('http://localhost:3000/api/caja', caja)
             .then(res => console.log(res.data));
 
-        //window.location = '/cajas';
+        window.location = '/cajas';
     }
 
     render() {
@@ -145,6 +145,7 @@ export default class CrearCaja extends Component {
                                         <div className="form-group col-xs-6">
                                             <label>Caja Final: </label>
                                             <input
+                                            readOnly
                                                 type="text"
                                                 className="form-control"
                                                 value={this.state.cajaFinal}
@@ -152,8 +153,9 @@ export default class CrearCaja extends Component {
                                             />
                                         </div>
                                         <div className="form-group col-xs-6">
-                                            <label>sumaTarjeta: </label>
+                                            <label>Total Tarjeta: </label>
                                             <input
+                                            readOnly
                                                 type="text"
                                                 className="form-control"
                                                 value={this.state.sumaTarjeta}

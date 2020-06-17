@@ -86,7 +86,7 @@ export default class CrearProducto extends Component {
             categoria: ''
         });
 
-        //window.location = '/productos';
+        window.location = '/productos';
     }
 
     render(){

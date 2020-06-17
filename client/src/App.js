@@ -24,6 +24,9 @@ import CrearTicket from "./componentes/ticket/crear-ticket.componente";
 //Cajas
 import ListarCaja from "./componentes/caja/listar-caja.componente";
 import CrearCaja from "./componentes/caja/crear-caja.componente";
+//Cajas
+import Login from "./componentes/login/Login.js";
+
 //import EditarCaja from "./componentes/caja/editar-caja.componente";
 
 
@@ -38,6 +41,9 @@ export default class App extends Component {
         {/*<!--Rutas Home-->*/}
         <Route path="/" exact component={Home} />
         <Route path="/fake_url" exact component={Home} />
+         {/*<!--Rutas Login-->*/}
+        <Route exact path="/login" component={Login} />
+				{/* <Redirect from="/" to="login" /> */}
         {/*<!--Rutas Usuarios-->*/}
         <Route path="/usuarios" component={ListarUsuario} />
         <Route path="/crear/usuario" component={CrearUsuario} />

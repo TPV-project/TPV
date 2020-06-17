@@ -44,16 +44,38 @@ export default class CrearTicket extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/products')
+        var existe = false;
+        axios.get('http://localhost:3000/api/caja')
             .then(response => {
-                if (response.data.length > 0) {
-                    console.log(response.data);
-                    this.setState({
-                        listaProductos: response.data,
-                    })
+                var diaActual = new Date();
+                var diaActual = diaActual.getFullYear() + '-' + diaActual.getMonth() + '-' + diaActual.getDate();
+                for (let i = 0; i < response.data.length; i++) {
+                    var diaCaja = new Date(response.data[i].fecha);
+                    var diaCaja = diaCaja.getFullYear() + '-' + diaCaja.getMonth() + '-' + diaCaja.getDate();
+
+                    if (diaActual == diaCaja) {
+                        console.log('Existo!!!!')
+                        existe = true;
+                    }
                 }
+                console.log(existe);
+                if (!existe) {
+                    //redirigim
+                    window.location = '/crear/caja';
+                } else {
+                    axios.get('http://localhost:3000/api/products')
+                        .then(response => {
+                            if (response.data.length > 0) {
+                                console.log(response.data);
+                                this.setState({
+                                    listaProductos: response.data,
+                                })
+                            }
+                        })
+                    document.getElementById("efectivo").style.visibility = "hidden";
+                }
+
             })
-        document.getElementById("efectivo").style.visibility = "hidden";
     }
 
     onChangeTicketProductos() {
@@ -102,15 +124,14 @@ export default class CrearTicket extends Component {
     }
 
     onChangeCambio(e) {
-        console.log(this.state.cantidad)
-        console.log(this.state.total)
+        
         this.setState({
             cambio: (this.state.cantidad - this.state.total)
         });
     }
     onChangeCantidad(e) {
         this.setState({
-            cantidad: e.target.value
+            cantidad: e.target.value,
         });
     }
 
@@ -133,8 +154,11 @@ export default class CrearTicket extends Component {
             cambio: this.state.cambio,
             barra: this.state.barra
         }
+        console.log(this.state.total);
         axios.post('http://localhost:3000/api/tickets', ticket)
             .then(res => console.log(res.data));
+        console.log(this.state.total);
+        this.actualizaCaja('+', ticket);
 
         this.setState({
             ticketProductos: [],
@@ -145,6 +169,52 @@ export default class CrearTicket extends Component {
             cantidad: 0,
             barra: false
         });
+
+        window.location = '/tickets';
+    }
+
+    actualizaCaja(operacion, ticket) {
+        console.log('METODO ACT');
+        //console.log(this.state);
+        if ('+' == operacion) {
+
+            axios.get('http://localhost:3000/api/caja')
+                .then(response => {
+
+                    console.log(response);
+ 
+                    var diaActual = new Date();
+                    var diaActual = diaActual.getFullYear() + '-' + diaActual.getMonth() + '-' + diaActual.getDate();
+
+                    for (let i = 0; i < response.data.length; i++) {
+
+                        var diaCaja = new Date(response.data[i].fecha);
+                        var diaCaja = diaCaja.getFullYear() + '-' + diaCaja.getMonth() + '-' + diaCaja.getDate();
+
+                        if (diaActual == diaCaja) {
+                            console.log('NUM CAJA');
+            
+                            if (ticket.efectivo == false) {
+                                
+                                response.data[i].sumaTarjeta =response.data[i].sumaTarjeta + ticket.total;
+                                console.log(response.data[i].sumaTarjeta);
+                            } else {
+                                if (response.data[i].cajaFinal == 0) {
+                                    response.data[i].cajaFinal = response.data[i].cajaInicial + ticket.total;
+                                } else {
+                                    var total =  response.data[i].cajaFinal + ticket.total;
+                                    response.data[i].cajaFinal = total;
+                                }
+                            }
+
+                            axios.put('http://localhost:3000/api/caja/' + response.data[i]._id, response.data[i])
+                                .then(res => console.log(res.data));
+                        }
+
+                    }
+                })
+
+        }
     }
 
     anadirProductoATicket(producto) {
@@ -164,7 +234,7 @@ export default class CrearTicket extends Component {
     deleteProductoDeTicket(poducto) {
         console.log(poducto._id);
         var productos = this.state.ticketProductos;
-        
+
         console.log('DELETE');
         console.log(productos);
         var pos;
@@ -209,7 +279,7 @@ export default class CrearTicket extends Component {
                                     this.state.listaProductos.map(currentproducto => {
                                         return <div key={currentproducto._id} onClick={() => this.anadirProductoATicket(currentproducto)}>
                                             <h3>{currentproducto.nombre}</h3>
-                                            <p>IMAGEN?</p>
+                                            <p></p>
                                             {/* <img src="img_nature.jpg" alt="Nature" onclick="myFunction(this);"></img> */}
                                         </div>
                                     })
@@ -223,104 +293,107 @@ export default class CrearTicket extends Component {
                         <div className="box">
                             <div className="box-body">
                                 <div className="row">
+
                                     <form onSubmit={this.onSubmit} className="mt-3">
 
-                                        <div className="box">
-                                            <div className="box-header">
-                                                <h3 className="box-title">Lista Productos</h3>
-                                            </div>
-                                            <div className="box-body no-padding">
-                                                <table className="table table-striped">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th>Nombre</th>
-                                                            <th>Cantidad</th>
-                                                        </tr>
-                                                        {
-                                                            this.state.ticketProductos.map(currentproducto => {
-                                                                return <tr>
-                                                                    <td>{currentproducto.nombre}</td>
-                                                                    <td>{currentproducto.nombre}</td>
-                                                                    <td><a href="#" className="btn btn-app" title={"Eliminar " + currentproducto.nombre} onClick={() => { this.deleteProductoDeTicket(currentproducto) }}><Eliminar /></a></td>
-                                                                </tr>
-
-                                                            })
-                                                        }
-                                                    </tbody></table>
-                                            </div>
-                                        </div>
-
-                                        <div className="form-group col-xs-6">
-                                            <label>Total: </label>
-                                            <input
-                                                readOnly
-                                                type="text"
-                                                className="form-control"
-                                                value={this.state.total}
-                                            />
-                                        </div>
-                                        <div className="form-group col-xs-6">
-                                            <label>Fecha: </label>
-                                            <input
-                                                required
-                                                type="Date"
-                                                className="form-control"
-                                                value={this.state.fecha}
-                                                onChange={this.onChangeFecha}
-                                            />
-                                        </div>
-                                        <div className="form-group col-xs-12">
-                                            <div className="row col-xs-12">
-                                                <label>Barra: </label>
-                                            </div>
-                                            <div className="row col-xs-12">
+                                        <div className="col-xs-6">
+                                            <div className="form-group col-xs-6">
+                                                <label>Total: </label>
                                                 <input
-                                                    className="ml-2"
-                                                    type="checkbox"
-                                                    value={this.state.barra}
-                                                    onClick={this.onChangeBarra}
+                                                    readOnly
+                                                    type="text"
+                                                    className="form-control"
+                                                    value={this.state.total}
                                                 />
                                             </div>
-                                        </div>
-                                        <div className="form-group col-xs-12">
-                                            <div className="row col-xs-12">
-                                                <label>Efectivo: </label>
+                                            <div className="form-group col-xs-6">
+                                                <label>Fecha: </label>
+                                                <input
+                                                    required
+                                                    type="Date"
+                                                    className="form-control"
+                                                    value={this.state.fecha}
+                                                    onChange={this.onChangeFecha}
+                                                />
                                             </div>
-                                            <div className="row col-xs-12">
+                                            <div className="form-group col-xs-6">
+
+                                                <label>Efectivo: </label>
                                                 <input
                                                     className="ml-2"
                                                     type="checkbox"
                                                     value={this.state.efectivo}
                                                     onClick={this.onChangeEfectivo}
                                                 />
-                                            </div>
-                                        </div>
-                                        <div id="efectivo">
-                                            <div className="form-group col-xs-6">
-                                                <label>Cantidad: </label>
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    className="form-control"
-                                                    value={this.state.cantidad}
-                                                    onChange={this.onChangeCantidad}
-                                                    onBlur={this.onChangeCambio}
-                                                />
+
                                             </div>
                                             <div className="form-group col-xs-6">
-                                                <label>Cambio: </label>
+
+                                                <label>Barra: </label>
+
+
                                                 <input
-                                                    readOnly
-                                                    type="text"
-                                                    className="form-control"
-                                                    value={this.state.cambio}
-                                                    onChange={this.onChangeCambio}
+                                                    className="ml-2"
+                                                    type="checkbox"
+                                                    value={this.state.barra}
+                                                    onClick={this.onChangeBarra}
                                                 />
+
+                                            </div>
+
+                                            <div id="efectivo">
+                                                <div className="form-group col-xs-6">
+                                                    <label>Cantidad: </label>
+                                                    <input
+                                                        required
+                                                        type="text"
+                                                        className="form-control"
+                                                        value={this.state.cantidad}
+                                                        onChange={this.onChangeCantidad}
+                                                        onBlur={this.onChangeCambio}
+                                                    />
+                                                </div>
+                                                <div className="form-group col-xs-6">
+                                                    <label>Cambio: </label>
+                                                    <input
+                                                        readOnly
+                                                        type="text"
+                                                        className="form-control"
+                                                        value={this.state.cambio}
+                                                        //onChange={this.onChangeCambio}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-group col-xs-6">
+                                                <input type="submit" value="Crear" className="btn btn-success" />
+                                                <a href="http://localhost:3001/tickets" type="button" className="btn btn-danger ml-3">Volver</a>
                                             </div>
                                         </div>
-                                        <div className="form-group col-xs-12">
-                                            <input type="submit" value="Crear" className="btn btn-success" />
-                                            <a href="http://localhost:3001/tickets" type="button" className="btn btn-danger ml-3">Volver</a>
+                                        <div className="col-xs-6">
+                                            <div className="box">
+                                                <div className="box-header">
+                                                    <h3 className="box-title">Lista Productos</h3>
+                                                </div>
+                                                <div className="box-body no-padding">
+                                                    <table className="table table-striped">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>Nombre</th>
+                                                                <th>Precio</th>
+                                                            </tr>
+                                                            {
+                                                                this.state.ticketProductos.map(currentproducto => {
+                                                                    return <tr>
+                                                                        <td>{currentproducto.nombre}</td>
+                                                                        <td>{currentproducto.precio_barra}</td>
+                                                                        <td><a href="#" className="btn btn-app" title={"Eliminar " + currentproducto.nombre} onClick={() => { this.deleteProductoDeTicket(currentproducto) }}><Eliminar /></a></td>
+                                                                    </tr>
+
+                                                                })
+                                                            }
+                                                        </tbody></table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

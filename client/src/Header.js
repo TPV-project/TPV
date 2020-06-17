@@ -25,14 +25,14 @@ export default class Header extends Component {
                     <li className="dropdown user user-menu">
                     <a href="fake_url" className="dropdown-toggle" data-toggle="dropdown">
                         <img src="dist/img/avatar5.png" className="user-image" alt="User" />
-                        <span className="hidden-xs">Rafa Serrano</span>
+                        <span className="hidden-xs">Pol Guinart</span>
                     </a>
                     <ul className="dropdown-menu">
                         {/* User image */}
                         <li className="user-header">
                         <img src="dist/img/avatar5.png" className="img-circle" alt="User" />
                         <p>
-                        Rafa Serrano
+                        Pol Guinart
                         </p>
                         </li>                                                
                         <li className="user-footer">
